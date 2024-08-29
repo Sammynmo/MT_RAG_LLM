@@ -1,0 +1,489 @@
+﻿Column_name,Table_name,DB_name
+ContId,continents,car_1
+Continent,continents,car_1
+CountryId,countries,car_1
+CountryName,countries,car_1
+Continent,countries,car_1
+Id,car-makers,car_1
+Maker,car-makers,car_1
+FullName,car-makers,car_1
+Country,car-makers,car_1
+MakeId,car-names,car_1
+Model,car-names,car_1
+Make,car-names,car_1
+Id,cars-data,car_1
+MPG,cars-data,car_1
+Cylinders,cars-data,car_1
+Edispl,cars-data,car_1
+Horsepower,cars-data,car_1
+Weight,cars-data,car_1
+Accelerate,cars-data,car_1
+Year,cars-data,car_1
+ModelId,model-list,car_1
+Maker,model-list,car_1
+Model,model-list,car_1
+Course_ID,course,course_teach
+Starting_Date,course,course_teach
+Course,course,course_teach
+Teacher_ID,teacher,course_teach
+Name,teacher,course_teach
+Age,teacher,course_teach
+Hometown,teacher,course_teach
+Course_ID,course_arrange,course_teach
+Teacher_ID,course_arrange,course_teach
+Grade,course_arrange,course_teach
+Template_ID,Templates,cre_Doc_Template_Mgt
+Version_Number,Templates,cre_Doc_Template_Mgt
+Template_Type_Code,Templates,cre_Doc_Template_Mgt
+Date_Effective_From,Templates,cre_Doc_Template_Mgt
+Date_Effective_To,Templates,cre_Doc_Template_Mgt
+Template_Details,Templates,cre_Doc_Template_Mgt
+Document_ID,Documents,cre_Doc_Template_Mgt
+Template_ID,Documents,cre_Doc_Template_Mgt
+Document_Name,Documents,cre_Doc_Template_Mgt
+Document_Description,Documents,cre_Doc_Template_Mgt
+Other_Details,Documents,cre_Doc_Template_Mgt
+Paragraph_ID,Paragraphs,cre_Doc_Template_Mgt
+Document_ID,Paragraphs,cre_Doc_Template_Mgt
+Paragraph_Text,Paragraphs,cre_Doc_Template_Mgt
+Other_Details,Paragraphs,cre_Doc_Template_Mgt
+Museum_ID,museum ,museum_visit
+Name,museum ,museum_visit
+Num_of_Staff,museum ,museum_visit
+Open_Year,museum ,museum_visit
+PRIMARY,museum ,museum_visit
+ID,visitor ,museum_visit
+Name,visitor ,museum_visit
+Level_of_membership,visitor ,museum_visit
+Age,visitor ,museum_visit
+PRIMARY,visitor ,museum_visit
+Museum_ID,visit ,museum_visit
+visitor_ID,visit ,museum_visit
+Num_of_Ticket,visit ,museum_visit
+Total_spent,visit ,museum_visit
+PRIMARY,visit ,museum_visit
+FOREIGN,visit ,museum_visit
+FOREIGN,visit ,museum_visit
+Conductor_ID,conductor ,orchestra
+Name,conductor ,orchestra
+Age,conductor ,orchestra
+Nationality,conductor ,orchestra
+Year_of_Work,conductor ,orchestra
+PRIMARY,conductor ,orchestra
+Orchestra_ID,orchestra ,orchestra
+Orchestra,orchestra ,orchestra
+Conductor_ID,orchestra ,orchestra
+Record_Company,orchestra ,orchestra
+Year_of_Founded,orchestra ,orchestra
+Major_Record_Format,orchestra ,orchestra
+PRIMARY,orchestra ,orchestra
+FOREIGN,orchestra ,orchestra
+Performance_ID,performance ,orchestra
+Orchestra_ID,performance ,orchestra
+Type,performance ,orchestra
+Date,performance ,orchestra
+Official_ratings_(millions),performance ,orchestra
+Weekly_rank,performance ,orchestra
+Share,performance ,orchestra
+PRIMARY,performance ,orchestra
+FOREIGN,performance ,orchestra
+Show_ID,show ,orchestra
+Performance_ID,show ,orchestra
+If_first_show,show ,orchestra
+Result,show ,orchestra
+Attendance,show ,orchestra
+FOREIGN,show ,orchestra
+StuID,Student ,pets_1
+Lname,Student ,pets_1
+Fname,Student ,pets_1
+Age,Student ,pets_1
+Sex,Student ,pets_1
+Major,Student ,pets_1
+Advisor,Student ,pets_1
+city_code,Student ,pets_1
+StuID,Has_Pet ,pets_1
+PetID,Has_Pet ,pets_1
+FOREIGN,Has_Pet ,pets_1
+FOREIGN,Has_Pet ,pets_1
+PetID,Pets ,pets_1
+PetType,Pets ,pets_1
+pet_age,Pets ,pets_1
+weight,Pets ,pets_1
+area_code,AREA_CODE_STATE,voter_1
+state,AREA_CODE_STATE,voter_1
+contestant_number,CONTESTANT,voter_1
+contestant_name,CONTESTANT,voter_1
+vode_id,VOTER,voter_1
+phone_number,VOTER,voter_1
+state,VOTER,voter_1
+contestant_number,VOTER,voter_1
+created,VOTER,voter_1
+player_id,loser_rank_points_p,wta_1
+first_name,loser_rank_points_p,wta_1
+last_name,loser_rank_points_p,wta_1
+hand,loser_rank_points_p,wta_1
+birth_date,loser_rank_points_p,wta_1
+country_code,loser_rank_points_p,wta_1
+best_of,matches,wta_1
+draw_size,matches,wta_1
+loser_age,matches,wta_1
+loser_entry,matches,wta_1
+loser_hand,matches,wta_1
+loser_ht,matches,wta_1
+loser_id,matches,wta_1
+loser_ioc,matches,wta_1
+loser_name,matches,wta_1
+loser_rank,matches,wta_1
+loser_rank_points,matches,wta_1
+loser_seed,matches,wta_1
+match_num,matches,wta_1
+minutes,matches,wta_1
+round,matches,wta_1
+score,matches,wta_1
+surface,matches,wta_1
+tourney_date,matches,wta_1
+tourney_id,matches,wta_1
+tourney_level,matches,wta_1
+tourney_name,matches,wta_1
+winner_age,matches,wta_1
+winner_entry,matches,wta_1
+winner_hand,matches,wta_1
+winner_ht,matches,wta_1
+winner_id,matches,wta_1
+winner_ioc,matches,wta_1
+winner_name,matches,wta_1
+winner_rank,matches,wta_1
+winner_rank_points,matches,wta_1
+winner_seed,matches,wta_1
+year,matches,wta_1
+FOREIGN,matches,wta_1
+FOREIGN,matches,wta_1
+best_of,qualifying_matches,wta_1
+draw_size,qualifying_matches,wta_1
+l_1stIn,qualifying_matches,wta_1
+l_1stWon,qualifying_matches,wta_1
+l_2ndWon,qualifying_matches,wta_1
+l_SvGms,qualifying_matches,wta_1
+l_ace,qualifying_matches,wta_1
+l_bpFaced,qualifying_matches,wta_1
+l_bpSaved,qualifying_matches,wta_1
+l_df,qualifying_matches,wta_1
+l_svpt,qualifying_matches,wta_1
+loser_age,qualifying_matches,wta_1
+loser_entry,qualifying_matches,wta_1
+loser_hand,qualifying_matches,wta_1
+loser_ht,qualifying_matches,wta_1
+loser_id,qualifying_matches,wta_1
+loser_ioc,qualifying_matches,wta_1
+loser_name,qualifying_matches,wta_1
+loser_rank,qualifying_matches,wta_1
+loser_rank_points,qualifying_matches,wta_1
+loser_seed,qualifying_matches,wta_1
+match_num,qualifying_matches,wta_1
+minutes,qualifying_matches,wta_1
+round,qualifying_matches,wta_1
+score,qualifying_matches,wta_1
+surface,qualifying_matches,wta_1
+tourney_date,qualifying_matches,wta_1
+tourney_id,qualifying_matches,wta_1
+tourney_level,qualifying_matches,wta_1
+tourney_name,qualifying_matches,wta_1
+w_1stIn,qualifying_matches,wta_1
+w_1stWon,qualifying_matches,wta_1
+w_2ndWon,qualifying_matches,wta_1
+w_SvGms,qualifying_matches,wta_1
+w_ace,qualifying_matches,wta_1
+w_bpFaced,qualifying_matches,wta_1
+w_bpSaved,qualifying_matches,wta_1
+w_df,qualifying_matches,wta_1
+w_svpt,qualifying_matches,wta_1
+winner_age,qualifying_matches,wta_1
+winner_entry,qualifying_matches,wta_1
+winner_hand,qualifying_matches,wta_1
+winner_ht,qualifying_matches,wta_1
+winner_id,qualifying_matches,wta_1
+winner_ioc,qualifying_matches,wta_1
+winner_name,qualifying_matches,wta_1
+winner_rank,qualifying_matches,wta_1
+winner_rank_points,qualifying_matches,wta_1
+winner_seed,qualifying_matches,wta_1
+year,qualifying_matches,wta_1
+FOREIGN,qualifying_matches,wta_1
+FOREIGN,qualifying_matches,wta_1
+ranking_date,rankings,wta_1
+ranking,rankings,wta_1
+player_id,rankings,wta_1
+ranking_points,rankings,wta_1
+tours,rankings,wta_1
+FOREIGN,rankings,wta_1
+Stadium_ID,stadium ,concert_singer
+Location,stadium ,concert_singer
+Name,stadium ,concert_singer
+Capacity,stadium ,concert_singer
+Highest,stadium ,concert_singer
+Lowest,stadium ,concert_singer
+Average,stadium ,concert_singer
+PRIMARY,stadium ,concert_singer
+Singer_ID,singer ,concert_singer
+Name,singer ,concert_singer
+Country,singer ,concert_singer
+Song_Name,singer ,concert_singer
+Song_release_year,singer ,concert_singer
+Age,singer ,concert_singer
+Is_male,singer ,concert_singer
+PRIMARY,singer ,concert_singer
+concert_ID,concert ,concert_singer
+concert_Name,concert ,concert_singer
+Theme,concert ,concert_singer
+Stadium_ID,concert ,concert_singer
+Year,concert ,concert_singer
+PRIMARY,concert ,concert_singer
+FOREIGN,concert ,concert_singer
+concert_ID,singer_in_concert ,concert_singer
+Singer_ID,singer_in_concert ,concert_singer
+PRIMARY,singer_in_concert ,concert_singer
+FOREIGN,singer_in_concert ,concert_singer
+FOREIGN,singer_in_concert ,concert_singer
+Employee_ID,employee ,employee_hire_evaluation
+Name,employee ,employee_hire_evaluation
+Age,employee ,employee_hire_evaluation
+City,employee ,employee_hire_evaluation
+PRIMARY,employee ,employee_hire_evaluation
+Shop_ID,shop ,employee_hire_evaluation
+Name,shop ,employee_hire_evaluation
+Location,shop ,employee_hire_evaluation
+District,shop ,employee_hire_evaluation
+Number_products,shop ,employee_hire_evaluation
+Manager_name,shop ,employee_hire_evaluation
+PRIMARY,shop ,employee_hire_evaluation
+Shop_ID,hiring ,employee_hire_evaluation
+Employee_ID,hiring ,employee_hire_evaluation
+Start_from,hiring ,employee_hire_evaluation
+Is_full_time,hiring ,employee_hire_evaluation
+PRIMARY,hiring ,employee_hire_evaluation
+FOREIGN,hiring ,employee_hire_evaluation
+FOREIGN,hiring ,employee_hire_evaluation
+Employee_ID,evaluation ,employee_hire_evaluation
+Year_awarded,evaluation ,employee_hire_evaluation
+Bonus,evaluation ,employee_hire_evaluation
+PRIMARY,evaluation ,employee_hire_evaluation
+FOREIGN,evaluation ,employee_hire_evaluation
+uid,airlines ,flight_2
+Airline,airlines ,flight_2
+Abbreviation,airlines ,flight_2
+Country,airlines ,flight_2
+City,airports ,flight_2
+AirportCode,airports ,flight_2
+AirportName,airports ,flight_2
+Country,airports ,flight_2
+CountryAbbrev,airports ,flight_2
+Airline,flights ,flight_2
+FlightNo,flights ,flight_2
+SourceAirport,flights ,flight_2
+DestAirport,flights ,flight_2
+PRIMARY,flights ,flight_2
+FOREIGN,flights ,flight_2
+FOREIGN,flights ,flight_2
+feature_type_code,Ref_Feature_Types ,real_estate_properties
+feature_type_name,Ref_Feature_Types ,real_estate_properties
+property_type_code,Ref_Property_Types ,real_estate_properties
+property_type_description,Ref_Property_Types ,real_estate_properties
+feature_id,Other_Available_Fea,real_estate_properties
+feature_type_code,Other_Available_Fea,real_estate_properties
+feature_name,Other_Available_Fea,real_estate_properties
+feature_description,Other_Available_Fea,real_estate_properties
+FOREIGN,Other_Available_Fea,real_estate_properties
+property_id,Properties ,real_estate_properties
+property_type_code,Properties ,real_estate_properties
+date_on_market,Properties ,real_estate_properties
+date_sold,Properties ,real_estate_properties
+property_name,Properties ,real_estate_properties
+property_address,Properties ,real_estate_properties
+room_count,Properties ,real_estate_properties
+vendor_requested_price,Properties ,real_estate_properties
+buyer_offered_price,Properties ,real_estate_properties
+agreed_selling_price,Properties ,real_estate_properties
+apt_feature_1,Properties ,real_estate_properties
+apt_feature_2,Properties ,real_estate_properties
+apt_feature_3,Properties ,real_estate_properties
+fld_feature_1,Properties ,real_estate_properties
+fld_feature_2,Properties ,real_estate_properties
+fld_feature_3,Properties ,real_estate_properties
+hse_feature_1,Properties ,real_estate_properties
+hse_feature_2,Properties ,real_estate_properties
+hse_feature_3,Properties ,real_estate_properties
+oth_feature_1,Properties ,real_estate_properties
+oth_feature_2,Properties ,real_estate_properties
+oth_feature_3,Properties ,real_estate_properties
+shp_feature_1,Properties ,real_estate_properties
+shp_feature_2,Properties ,real_estate_properties
+shp_feature_3,Properties ,real_estate_properties
+other_property_details,Properties ,real_estate_properties
+FOREIGN,Properties ,real_estate_properties
+property_id,Other_Property_Feat,real_estate_properties
+feature_id,Other_Property_Feat,real_estate_properties
+property_feature_description,Other_Property_Feat,real_estate_properties
+FOREIGN,Other_Property_Feat,real_estate_properties
+FOREIGN,Other_Property_Feat,real_estate_properties
+Singer_ID,singer ,singer
+Name,singer ,singer
+Birth_Year,singer ,singer
+Net_Worth_Millions,singer ,singer
+Citizenship,singer ,singer
+PRIMARY,singer ,singer
+Song_ID,song ,singer
+Title,song ,singer
+Singer_ID,song ,singer
+Sales,song ,singer
+Highest_Position,song ,singer
+PRIMARY,song ,singer
+FOREIGN,song ,singer
+address_id,Addresses ,student_transcripts_tracking
+line_1,Addresses ,student_transcripts_tracking
+line_2,Addresses ,student_transcripts_tracking
+line_3,Addresses ,student_transcripts_tracking
+city,Addresses ,student_transcripts_tracking
+zip_postcode,Addresses ,student_transcripts_tracking
+state_province_county,Addresses ,student_transcripts_tracking
+country,Addresses ,student_transcripts_tracking
+other_address_details,Addresses ,student_transcripts_tracking
+course_id,Courses ,student_transcripts_tracking
+course_name,Courses ,student_transcripts_tracking
+course_description,Courses ,student_transcripts_tracking
+other_details,Courses ,student_transcripts_tracking
+department_id,Departments ,student_transcripts_tracking
+department_name,Departments ,student_transcripts_tracking
+department_description,Departments ,student_transcripts_tracking
+other_details,Departments ,student_transcripts_tracking
+degree_program_id,Degree_Programs ,student_transcripts_tracking
+department_id,Degree_Programs ,student_transcripts_tracking
+degree_summary_name,Degree_Programs ,student_transcripts_tracking
+degree_summary_description,Degree_Programs ,student_transcripts_tracking
+other_details,Degree_Programs ,student_transcripts_tracking
+FOREIGN,Degree_Programs ,student_transcripts_tracking
+section_id,Sections ,student_transcripts_tracking
+course_id,Sections ,student_transcripts_tracking
+section_name,Sections ,student_transcripts_tracking
+section_description,Sections ,student_transcripts_tracking
+other_details,Sections ,student_transcripts_tracking
+FOREIGN,Sections ,student_transcripts_tracking
+semester_id,Semesters ,student_transcripts_tracking
+semester_name,Semesters ,student_transcripts_tracking
+semester_description,Semesters ,student_transcripts_tracking
+other_details,Semesters ,student_transcripts_tracking
+student_id,Students ,student_transcripts_tracking
+current_address_id,Students ,student_transcripts_tracking
+permanent_address_id,Students ,student_transcripts_tracking
+first_name,Students ,student_transcripts_tracking
+middle_name,Students ,student_transcripts_tracking
+last_name,Students ,student_transcripts_tracking
+cell_mobile_number,Students ,student_transcripts_tracking
+email_address,Students ,student_transcripts_tracking
+ssn,Students ,student_transcripts_tracking
+date_first_registered,Students ,student_transcripts_tracking
+date_left,Students ,student_transcripts_tracking
+other_student_details,Students ,student_transcripts_tracking
+FOREIGN,Students ,student_transcripts_tracking
+FOREIGN,Students ,student_transcripts_tracking
+student_enrolment_id,Student_Enrolment ,student_transcripts_tracking
+degree_program_id,Student_Enrolment ,student_transcripts_tracking
+semester_id,Student_Enrolment ,student_transcripts_tracking
+student_id,Student_Enrolment ,student_transcripts_tracking
+other_details,Student_Enrolment ,student_transcripts_tracking
+FOREIGN,Student_Enrolment ,student_transcripts_tracking
+FOREIGN,Student_Enrolment ,student_transcripts_tracking
+FOREIGN,Student_Enrolment ,student_transcripts_tracking
+student_course_id,Student_Enrolment_C,student_transcripts_tracking
+course_id,Student_Enrolment_C,student_transcripts_tracking
+student_enrolment_id,Student_Enrolment_C,student_transcripts_tracking
+FOREIGN,Student_Enrolment_C,student_transcripts_tracking
+FOREIGN,Student_Enrolment_C,student_transcripts_tracking
+transcript_id,Transcripts ,student_transcripts_tracking
+transcript_date,Transcripts ,student_transcripts_tracking
+other_details,Transcripts ,student_transcripts_tracking
+student_course_id,Transcript_Contents,student_transcripts_tracking
+transcript_id,Transcript_Contents,student_transcripts_tracking
+FOREIGN,Transcript_Contents,student_transcripts_tracking
+FOREIGN,Transcript_Contents,student_transcripts_tracking
+ID,city,world_1
+Name,city,world_1
+CountryCode,city,world_1
+District,city,world_1
+Population,city,world_1
+name,sqlite_sequence,world_1
+seq,sqlite_sequence,world_1
+Code,country,world_1
+Name,country,world_1
+Continent,country,world_1
+Region,country,world_1
+SurfaceArea,country,world_1
+IndepYear,country,world_1
+Population,country,world_1
+LifeExpectancy,country,world_1
+GNP,country,world_1
+GNPOld,country,world_1
+LocalName,country,world_1
+GovernmentForm,country,world_1
+HeadOfState,country,world_1
+Capital,country,world_1
+Code2,country,world_1
+CountryCode,countrylanguage,world_1
+Language,countrylanguage,world_1
+IsOfficial,countrylanguage,world_1
+Percentage,countrylanguage,world_1
+breed_code,Breeds ,dog_kennels
+breed_name,Breeds ,dog_kennels
+charge_id,Charges ,dog_kennels
+charge_type,Charges ,dog_kennels
+charge_amount,Charges ,dog_kennels
+size_code,Sizes ,dog_kennels
+size_description,Sizes ,dog_kennels
+treatment_type_code,Treatment_Types ,dog_kennels
+treatment_type_description,Treatment_Types ,dog_kennels
+owner_id,Owners ,dog_kennels
+first_name,Owners ,dog_kennels
+last_name,Owners ,dog_kennels
+street,Owners ,dog_kennels
+city,Owners ,dog_kennels
+state,Owners ,dog_kennels
+zip_code,Owners ,dog_kennels
+email_address,Owners ,dog_kennels
+home_phone,Owners ,dog_kennels
+cell_number,Owners ,dog_kennels
+dog_id,Dogs ,dog_kennels
+owner_id,Dogs ,dog_kennels
+abandoned_yn,Dogs ,dog_kennels
+breed_code,Dogs ,dog_kennels
+size_code,Dogs ,dog_kennels
+name,Dogs ,dog_kennels
+age,Dogs ,dog_kennels
+date_of_birth,Dogs ,dog_kennels
+gender,Dogs ,dog_kennels
+weight,Dogs ,dog_kennels
+date_arrived,Dogs ,dog_kennels
+date_adopted,Dogs ,dog_kennels
+date_departed,Dogs ,dog_kennels
+FOREIGN,Dogs ,dog_kennels
+FOREIGN,Dogs ,dog_kennels
+FOREIGN,Dogs ,dog_kennels
+FOREIGN,Dogs ,dog_kennels
+professional_id,Professionals ,dog_kennels
+role_code,Professionals ,dog_kennels
+first_name,Professionals ,dog_kennels
+street,Professionals ,dog_kennels
+city,Professionals ,dog_kennels
+state,Professionals ,dog_kennels
+zip_code,Professionals ,dog_kennels
+last_name,Professionals ,dog_kennels
+email_address,Professionals ,dog_kennels
+home_phone,Professionals ,dog_kennels
+cell_number,Professionals ,dog_kennels
+treatment_id,Treatments ,dog_kennels
+dog_id,Treatments ,dog_kennels
+professional_id,Treatments ,dog_kennels
+treatment_type_code,Treatments ,dog_kennels
+date_of_treatment,Treatments ,dog_kennels
+cost_of_treatment,Treatments ,dog_kennels
+FOREIGN,Treatments ,dog_kennels
+FOREIGN,Treatments ,dog_kennels
+FOREIGN,Treatments ,dog_kennels
