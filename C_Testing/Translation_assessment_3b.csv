@@ -1,0 +1,1076 @@
+DB_ID,Query,Question,Output,Translation,Explanation,Similarity_1,SimilarityV2,Similarity_V3
+concert_singer,"SELECT T2.name ,  T2.capacity FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.year  >=  2014 GROUP BY T2.stadium_id ORDER BY count(*) DESC LIMIT 1",Show the stadium name and capacity with most number of concerts in year 2014 or after.,"Translation: Show the name and capacity of the stadium where concerts took place after 2014, and display the stadium with the highest number of concerts.
+
+Explanation:
+1. SELECT T2.name, T2.capacity: This part of the statement selects the name and capacity columns from the stadium table (aliased as T2).
+2. FROM concert AS T1: Specifies the table concert and aliases it as T1.
+3. JOIN stadium AS T2 ON T1.stadium_id = T2.stadium_id: Joins the concert table with the stadium table based on the stadium_id column to match concerts with their respective stadiums.
+4. WHERE T1.year >= 2014: Filters the concerts to only include those that took place in the year 2014 or later.
+5. GROUP BY T2.stadium_id: Groups the results by stadium_id from the stadium table to count the number of concerts per stadium.
+6. ORDER BY count(*) DESC: Orders the results by the count of concerts per stadium in descending order.
+7. LIMIT 1: Limits the output to only display the stadium with the highest count of concerts.
+
+Example using context:
+Considering the schema provided:
+- concert table has columns: concert_id, stadium_id, year
+- stadium table has columns: stadium_id, name, capacity
+
+If we have the following data:
+concert table:
+1, 1, 2015
+2, 2, 2016
+3, 1, 2017
+
+stadium table:
+1, ""Stadium A"", 50000
+2, ""Stadium B"", 60000
+
+The query will return:
+name: ""Stadium A""
+capacity: 50000
+
+Explanation of the example:
+- Only concerts after 2014 are considered, so concert with concert_id 2 (in 2016) and concert with concert_id 3 (in 2017) are included.
+- The concerts took place in Stadium A (stadium_id 1) and Stadium B (stadium_id 2).
+- Stadium A had 2 concerts, while Stadium B had 1 concert. Since we are ordering by count(*) in descending order, Stadium A is listed first.
+- Finally, with LIMIT 1, only the stadium with the highest count of concerts (Stadium A) is displayed.","Translation: Show the name and capacity of the stadium where concerts took place after 2014, and display the stadium with the highest number of concerts.","1. SELECT T2.name, T2.capacity: This part of the statement selects the name and capacity columns from the stadium table (aliased as T2).
+2. FROM concert AS T1: Specifies the table concert and aliases it as T1.
+3. JOIN stadium AS T2 ON T1.stadium_id = T2.stadium_id: Joins the concert table with the stadium table based on the stadium_id column to match concerts with their respective stadiums.
+4. WHERE T1.year >= 2014: Filters the concerts to only include those that took place in the year 2014 or later.
+5. GROUP BY T2.stadium_id: Groups the results by stadium_id from the stadium table to count the number of concerts per stadium.
+6. ORDER BY count(*) DESC: Orders the results by the count of concerts per stadium in descending order.
+7. LIMIT 1: Limits the output to only display the stadium with the highest count of concerts.
+
+Example using context:
+Considering the schema provided:
+- concert table has columns: concert_id, stadium_id, year
+- stadium table has columns: stadium_id, name, capacity
+
+If we have the following data:
+concert table:
+1, 1, 2015
+2, 2, 2016
+3, 1, 2017
+
+stadium table:
+1, ""Stadium A"", 50000
+2, ""Stadium B"", 60000
+
+The query will return:
+name: ""Stadium A""
+capacity: 50000
+
+Explanation of the example:
+- Only concerts after 2014 are considered, so concert with concert_id 2 (in 2016) and concert with concert_id 3 (in 2017) are included.
+- The concerts took place in Stadium A (stadium_id 1) and Stadium B (stadium_id 2).
+- Stadium A had 2 concerts, while Stadium B had 1 concert. Since we are ordering by count(*) in descending order, Stadium A is listed first.
+- Finally, with LIMIT 1, only the stadium with the highest count of concerts (Stadium A) is displayed.",0.87102675,0.9477890177464826,0.9568863
+pets_1,"SELECT T1.fname ,  T1.age FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'dog' AND T1.stuid NOT IN (SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat')",Find the first name and age of students who have a dog but do not have a cat as a pet.,"Translation: Retrieve the first name and age of students who have a pet which is a dog but do not have a pet which is a cat.
+
+Explanation: 
+1. SELECT T1.fname, T1.age: We are selecting the first name and age of students from the ""student"" table, which is aliased as T1.
+2. FROM student AS T1: We are getting the data from the ""student"" table and aliasing it as T1.
+3. JOIN has_pet AS T2 ON T1.stuid = T2.stuid: We are joining the ""student"" table with the ""has_pet"" table on the student ID.
+4. JOIN pets AS T3 ON T3.petid = T2.petid: We are joining the ""has_pet"" table with the ""pets"" table on the pet ID.
+5. WHERE T3.pettype = 'dog': We are filtering the results to only include rows where the pet type is a dog.
+6. AND T1.stuid NOT IN (SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid = T2.stuid JOIN pets AS T3 ON T3.petid = T2.petid WHERE T3.pettype = 'cat'): We are excluding students who have a pet which is a cat by using a subquery to filter them out.
+
+Example:
+- If the ""student"" table has columns like stuid, fname, age and the ""has_pet"" table has columns like stuid, petid and the ""pets"" table has columns like petid, pettype, the SQL statement will retrieve the first name and age of students who have a dog as a pet but do not have a cat as a pet.",Translation: Retrieve the first name and age of students who have a pet which is a dog but do not have a pet which is a cat.,"1. SELECT T1.fname, T1.age: We are selecting the first name and age of students from the ""student"" table, which is aliased as T1.
+2. FROM student AS T1: We are getting the data from the ""student"" table and aliasing it as T1.
+3. JOIN has_pet AS T2 ON T1.stuid = T2.stuid: We are joining the ""student"" table with the ""has_pet"" table on the student ID.
+4. JOIN pets AS T3 ON T3.petid = T2.petid: We are joining the ""has_pet"" table with the ""pets"" table on the pet ID.
+5. WHERE T3.pettype = 'dog': We are filtering the results to only include rows where the pet type is a dog.
+6. AND T1.stuid NOT IN (SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid = T2.stuid JOIN pets AS T3 ON T3.petid = T2.petid WHERE T3.pettype = 'cat'): We are excluding students who have a pet which is a cat by using a subquery to filter them out.
+
+Example:
+- If the ""student"" table has columns like stuid, fname, age and the ""has_pet"" table has columns like stuid, petid and the ""pets"" table has columns like petid, pettype, the SQL statement will retrieve the first name and age of students who have a dog as a pet but do not have a cat as a pet.",0.72292984,0.9543017088089655,0.92790306
+car_1,SELECT T1.CountryName FROM COUNTRIES AS T1 JOIN CONTINENTS AS T2 ON T1.Continent  =  T2.ContId JOIN CAR_MAKERS AS T3 ON T1.CountryId  =  T3.Country WHERE T2.Continent  =  'europe' GROUP BY T1.CountryName HAVING count(*)  >=  3;,Which countries in europe have at least 3 car manufacturers?,"Translation: Show the names of countries in Europe that have at least 3 car makers.
+
+Explanation: 
+1. SELECT T1.CountryName: We want to select the column ""CountryName"" from the table ""COUNTRIES"" and alias it as ""T1"".
+2. FROM COUNTRIES AS T1: We are selecting data from the table ""COUNTRIES"" and aliasing it as ""T1"".
+3. JOIN CONTINENTS AS T2 ON T1.Continent = T2.ContId: We are joining the table ""CONTINENTS"" as ""T2"" based on the condition that the continent ID in table ""COUNTRIES"" matches the continent ID in table ""CONTINENTS"".
+4. JOIN CAR_MAKERS AS T3 ON T1.CountryId = T3.Country: We are joining the table ""CAR_MAKERS"" as ""T3"" based on the condition that the country ID in table ""COUNTRIES"" matches the country ID in table ""CAR_MAKERS"".
+5. WHERE T2.Continent = 'europe': We are filtering the results to only include continents that are 'Europe'.
+6. GROUP BY T1.CountryName: We are grouping the results by the country names.
+7. HAVING count(*) >= 3: We are filtering the grouped results to only include countries that have at least 3 car makers.
+
+Example:
+- If the ""COUNTRIES"" table contains columns like ""CountryId"", ""CountryName"", and ""Continent"", and the ""CONTINENTS"" table contains columns like ""ContId"" and ""Continent"", and the ""CAR_MAKERS"" table contains columns like ""CarMakerId"", ""CarMakerName"", and ""Country"", then the SQL statement will retrieve the names of countries in Europe that have at least 3 car makers.",Translation: Show the names of countries in Europe that have at least 3 car makers.,"1. SELECT T1.CountryName: We want to select the column ""CountryName"" from the table ""COUNTRIES"" and alias it as ""T1"".
+2. FROM COUNTRIES AS T1: We are selecting data from the table ""COUNTRIES"" and aliasing it as ""T1"".
+3. JOIN CONTINENTS AS T2 ON T1.Continent = T2.ContId: We are joining the table ""CONTINENTS"" as ""T2"" based on the condition that the continent ID in table ""COUNTRIES"" matches the continent ID in table ""CONTINENTS"".
+4. JOIN CAR_MAKERS AS T3 ON T1.CountryId = T3.Country: We are joining the table ""CAR_MAKERS"" as ""T3"" based on the condition that the country ID in table ""COUNTRIES"" matches the country ID in table ""CAR_MAKERS"".
+5. WHERE T2.Continent = 'europe': We are filtering the results to only include continents that are 'Europe'.
+6. GROUP BY T1.CountryName: We are grouping the results by the country names.
+7. HAVING count(*) >= 3: We are filtering the grouped results to only include countries that have at least 3 car makers.
+
+Example:
+- If the ""COUNTRIES"" table contains columns like ""CountryId"", ""CountryName"", and ""Continent"", and the ""CONTINENTS"" table contains columns like ""ContId"" and ""Continent"", and the ""CAR_MAKERS"" table contains columns like ""CarMakerId"", ""CarMakerName"", and ""Country"", then the SQL statement will retrieve the names of countries in Europe that have at least 3 car makers.",0.7662126,0.937107802838172,0.9201378
+car_1,"SELECT T2.MakeId ,  T2.Make FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id  =  T2.MakeId WHERE T1.Horsepower  >  (SELECT min(Horsepower) FROM CARS_DATA) AND T1.Cylinders  <=  3;","Among the cars with more than lowest horsepower, which ones do not have more than 3 cylinders? List the car makeid and make name.","Translation: Show the make ID and make of cars where the horsepower is greater than the minimum horsepower in the CARS_DATA table and the number of cylinders is less than or equal to 3.
+
+Explanation:
+1. The SQL statement starts with the SELECT keyword to indicate that we want to retrieve data from the database.
+2. We are selecting two columns, MakeId and Make, from two different tables, CARS_DATA and CAR_NAMES.
+3. We are giving an alias ""T1"" to the CARS_DATA table and an alias ""T2"" to the CAR_NAMES table.
+4. We are using the JOIN keyword to combine the two tables based on the condition T1.Id = T2.MakeId. This means that we are joining the tables on the Id column of CARS_DATA and the MakeId column of CAR_NAMES.
+5. The WHERE clause is used to filter the results. We are specifying two conditions:
+   a. T1.Horsepower > (SELECT min(Horsepower) FROM CARS_DATA): This subquery calculates the minimum horsepower from the CARS_DATA table, and we are comparing it with the Horsepower column of T1 (CARS_DATA table).
+   b. T1.Cylinders <= 3: This condition checks if the value in the Cylinders column of T1 (CARS_DATA table) is less than or equal to 3.
+6. The result will show the MakeId and Make of cars that meet the specified criteria.
+
+Example:
+- Suppose the CARS_DATA table has columns: Id, Horsepower, Cylinders.
+- Suppose the CAR_NAMES table has columns: MakeId, Make.
+- If CARS_DATA has a row with Id = 1, Horsepower = 200, and Cylinders = 4, and CAR_NAMES has a row with MakeId = 1 and Make = ""Toyota"", this row will not be included in the result because the number of cylinders is greater than 3.",Translation: Show the make ID and make of cars where the horsepower is greater than the minimum horsepower in the CARS_DATA table and the number of cylinders is less than or equal to 3.,"1. The SQL statement starts with the SELECT keyword to indicate that we want to retrieve data from the database.
+2. We are selecting two columns, MakeId and Make, from two different tables, CARS_DATA and CAR_NAMES.
+3. We are giving an alias ""T1"" to the CARS_DATA table and an alias ""T2"" to the CAR_NAMES table.
+4. We are using the JOIN keyword to combine the two tables based on the condition T1.Id = T2.MakeId. This means that we are joining the tables on the Id column of CARS_DATA and the MakeId column of CAR_NAMES.
+5. The WHERE clause is used to filter the results. We are specifying two conditions:
+   a. T1.Horsepower > (SELECT min(Horsepower) FROM CARS_DATA): This subquery calculates the minimum horsepower from the CARS_DATA table, and we are comparing it with the Horsepower column of T1 (CARS_DATA table).
+   b. T1.Cylinders <= 3: This condition checks if the value in the Cylinders column of T1 (CARS_DATA table) is less than or equal to 3.
+6. The result will show the MakeId and Make of cars that meet the specified criteria.
+
+Example:
+- Suppose the CARS_DATA table has columns: Id, Horsepower, Cylinders.
+- Suppose the CAR_NAMES table has columns: MakeId, Make.
+- If CARS_DATA has a row with Id = 1, Horsepower = 200, and Cylinders = 4, and CAR_NAMES has a row with MakeId = 1 and Make = ""Toyota"", this row will not be included in the result because the number of cylinders is greater than 3.",0.67502856,0.881253175207972,0.74438274
+car_1,"select t1.id ,  t1.maker from car_makers as t1 join model_list as t2 on t1.id  =  t2.maker group by t1.id having count(*)  >=  2 intersect select t1.id ,  t1.maker from car_makers as t1 join model_list as t2 on t1.id  =  t2.maker join car_names as t3 on t2.model  =  t3.model group by t1.id having count(*)  >  3;",Which are the car makers which produce at least 2 models and more than 3 car makers ? List the id and the maker .,"Translation: Show the id and maker columns from the car_makers table where the count of entries with the same id is greater than or equal to 2, and also show the id and maker columns from the same table where the count of entries with the same id is greater than 3, but only for those entries that have a corresponding model in the model_list table.
+
+Explanation:
+1. The SQL statement starts by selecting the id and maker columns from the car_makers table and assigns the alias ""t1"" to this table.
+2. It then joins the model_list table, assigning the alias ""t2"" to it, on the condition that the id from car_makers is equal to the maker in model_list.
+3. The result is then grouped by the id from car_makers.
+4. The HAVING clause filters the grouped results to only include those where the count of entries for each id is greater than or equal to 2.
+5. The INTERSECT keyword is used to combine the results of this query with another query.
+6. The second part of the query is similar to the first, but it adds another join with the car_names table, assigning the alias ""t3"" to it, on the condition that the model from model_list is equal to the model in car_names.
+7. This part is also grouped by the id from car_makers.
+8. The HAVING clause in the second part further filters the results to only include those where the count of entries for each id is greater than 3.
+9. The final result will show the id and maker columns from car_makers that meet both conditions specified in the two parts of the query.","Translation: Show the id and maker columns from the car_makers table where the count of entries with the same id is greater than or equal to 2, and also show the id and maker columns from the same table where the count of entries with the same id is greater than 3, but only for those entries that have a corresponding model in the model_list table.","1. The SQL statement starts by selecting the id and maker columns from the car_makers table and assigns the alias ""t1"" to this table.
+2. It then joins the model_list table, assigning the alias ""t2"" to it, on the condition that the id from car_makers is equal to the maker in model_list.
+3. The result is then grouped by the id from car_makers.
+4. The HAVING clause filters the grouped results to only include those where the count of entries for each id is greater than or equal to 2.
+5. The INTERSECT keyword is used to combine the results of this query with another query.
+6. The second part of the query is similar to the first, but it adds another join with the car_names table, assigning the alias ""t3"" to it, on the condition that the model from model_list is equal to the model in car_names.
+7. This part is also grouped by the id from car_makers.
+8. The HAVING clause in the second part further filters the results to only include those where the count of entries for each id is greater than 3.
+9. The final result will show the id and maker columns from car_makers that meet both conditions specified in the two parts of the query.",0.60615605,0.8481615488183649,0.59652334
+car_1,"SELECT T1.Id ,  T1.Maker FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker GROUP BY T1.Id HAVING count(*)  >=  2 INTERSECT SELECT T1.Id ,  T1.Maker FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker JOIN CAR_NAMES AS T3 ON T2.model  =  T3.model GROUP BY T1.Id HAVING count(*)  >  3;",What are the ids and makers of all car makers that produce at least 2 models and make more than 3 cars?,"Translation: Show the ID and Maker columns from the CAR_MAKERS table where the count of models associated with each maker is greater than or equal to 2, and also show the ID and Maker columns from the CAR_MAKERS table where the count of models associated with each maker is greater than 3.
+
+Explanation:
+1. SELECT T1.Id, T1.Maker: This part of the SQL statement selects the ID and Maker columns from the CAR_MAKERS table and aliases the table as T1.
+2. FROM CAR_MAKERS AS T1: This specifies the table CAR_MAKERS and aliases it as T1.
+3. JOIN MODEL_LIST AS T2 ON T1.Id = T2.Maker: This is a join condition that connects the CAR_MAKERS table with the MODEL_LIST table based on the ID in CAR_MAKERS matching the Maker in MODEL_LIST.
+4. GROUP BY T1.Id: This groups the results by the ID in CAR_MAKERS.
+5. HAVING count(*) >= 2: This filters the groups to only include those with a count of records (models) greater than or equal to 2.
+
+6. INTERSECT: This operator is used to combine the results of two SELECT statements while removing duplicates.
+
+7. SELECT T1.Id, T1.Maker: This part of the SQL statement selects the ID and Maker columns from the CAR_MAKERS table and aliases the table as T1.
+8. FROM CAR_MAKERS AS T1: This specifies the table CAR_MAKERS and aliases it as T1.
+9. JOIN MODEL_LIST AS T2 ON T1.Id = T2.Maker: This is a join condition that connects the CAR_MAKERS table with the MODEL_LIST table based on the ID in CAR_MAKERS matching the Maker in MODEL_LIST.
+10. JOIN CAR_NAMES AS T3 ON T2.model = T3.model: This is another join condition that connects the MODEL_LIST table with the CAR_NAMES table based on the model column.
+11. GROUP BY T1.Id: This groups the results by the ID in CAR_MAKERS.
+12. HAVING count(*) > 3: This filters the groups to only include those with a count of records (models) greater than 3.","Translation: Show the ID and Maker columns from the CAR_MAKERS table where the count of models associated with each maker is greater than or equal to 2, and also show the ID and Maker columns from the CAR_MAKERS table where the count of models associated with each maker is greater than 3.","1. SELECT T1.Id, T1.Maker: This part of the SQL statement selects the ID and Maker columns from the CAR_MAKERS table and aliases the table as T1.
+2. FROM CAR_MAKERS AS T1: This specifies the table CAR_MAKERS and aliases it as T1.
+3. JOIN MODEL_LIST AS T2 ON T1.Id = T2.Maker: This is a join condition that connects the CAR_MAKERS table with the MODEL_LIST table based on the ID in CAR_MAKERS matching the Maker in MODEL_LIST.
+4. GROUP BY T1.Id: This groups the results by the ID in CAR_MAKERS.
+5. HAVING count(*) >= 2: This filters the groups to only include those with a count of records (models) greater than or equal to 2.
+
+6. INTERSECT: This operator is used to combine the results of two SELECT statements while removing duplicates.
+
+7. SELECT T1.Id, T1.Maker: This part of the SQL statement selects the ID and Maker columns from the CAR_MAKERS table and aliases the table as T1.
+8. FROM CAR_MAKERS AS T1: This specifies the table CAR_MAKERS and aliases it as T1.
+9. JOIN MODEL_LIST AS T2 ON T1.Id = T2.Maker: This is a join condition that connects the CAR_MAKERS table with the MODEL_LIST table based on the ID in CAR_MAKERS matching the Maker in MODEL_LIST.
+10. JOIN CAR_NAMES AS T3 ON T2.model = T3.model: This is another join condition that connects the MODEL_LIST table with the CAR_NAMES table based on the model column.
+11. GROUP BY T1.Id: This groups the results by the ID in CAR_MAKERS.
+12. HAVING count(*) > 3: This filters the groups to only include those with a count of records (models) greater than 3.",0.6424738,0.8622597521887174,0.66166395
+car_1,"SELECT T1.countryId ,  T1.CountryName FROM Countries AS T1 JOIN CAR_MAKERS AS T2 ON T1.CountryId  =  T2.Country GROUP BY T1.countryId HAVING count(*)  >  3 UNION SELECT T1.countryId ,  T1.CountryName FROM Countries AS T1 JOIN CAR_MAKERS AS T2 ON T1.CountryId  =  T2.Country JOIN MODEL_LIST AS T3 ON T2.Id  =  T3.Maker WHERE T3.Model  =  'fiat';",What are the id and names of the countries which have more than 3 car makers or produce the 'fiat' model?,"Translation: Show the country ID and country name from the Countries table where the count of car makers from that country is greater than 3, as well as the country ID and country name from the Countries table where the car maker produces a Fiat model.
+
+Explanation:
+1. SELECT T1.countryId, T1.CountryName: We are selecting the countryId and CountryName columns from the Countries table and aliasing the table as T1.
+2. FROM Countries AS T1: We are selecting data from the Countries table and aliasing it as T1.
+3. JOIN CAR_MAKERS AS T2 ON T1.CountryId = T2.Country: We are joining the Countries table with the CAR_MAKERS table based on the CountryId in Countries matching the Country in CAR_MAKERS.
+4. GROUP BY T1.countryId: We are grouping the results by the countryId from Countries.
+5. HAVING count(*) > 3: We are filtering the grouped results to only show countries where the count of car makers is greater than 3.
+6. UNION: We are combining the results of the previous query with the results of the next query.
+7. SELECT T1.countryId, T1.CountryName: We are again selecting the countryId and CountryName columns from the Countries table.
+8. JOIN CAR_MAKERS AS T2 ON T1.CountryId = T2.Country: We are joining the Countries table with the CAR_MAKERS table based on the CountryId in Countries matching the Country in CAR_MAKERS.
+9. JOIN MODEL_LIST AS T3 ON T2.Id = T3.Maker: We are further joining the CAR_MAKERS table with the MODEL_LIST table based on the Id in CAR_MAKERS matching the Maker in MODEL_LIST.
+10. WHERE T3.Model = 'fiat': We are filtering the results to only show countries where the car maker produces a model that is 'fiat'.","Translation: Show the country ID and country name from the Countries table where the count of car makers from that country is greater than 3, as well as the country ID and country name from the Countries table where the car maker produces a Fiat model.","1. SELECT T1.countryId, T1.CountryName: We are selecting the countryId and CountryName columns from the Countries table and aliasing the table as T1.
+2. FROM Countries AS T1: We are selecting data from the Countries table and aliasing it as T1.
+3. JOIN CAR_MAKERS AS T2 ON T1.CountryId = T2.Country: We are joining the Countries table with the CAR_MAKERS table based on the CountryId in Countries matching the Country in CAR_MAKERS.
+4. GROUP BY T1.countryId: We are grouping the results by the countryId from Countries.
+5. HAVING count(*) > 3: We are filtering the grouped results to only show countries where the count of car makers is greater than 3.
+6. UNION: We are combining the results of the previous query with the results of the next query.
+7. SELECT T1.countryId, T1.CountryName: We are again selecting the countryId and CountryName columns from the Countries table.
+8. JOIN CAR_MAKERS AS T2 ON T1.CountryId = T2.Country: We are joining the Countries table with the CAR_MAKERS table based on the CountryId in Countries matching the Country in CAR_MAKERS.
+9. JOIN MODEL_LIST AS T3 ON T2.Id = T3.Maker: We are further joining the CAR_MAKERS table with the MODEL_LIST table based on the Id in CAR_MAKERS matching the Maker in MODEL_LIST.
+10. WHERE T3.Model = 'fiat': We are filtering the results to only show countries where the car maker produces a model that is 'fiat'.",0.7572202,0.8895348834132457,0.86493295
+flight_2,"SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline WHERE T2.SourceAirport  =  ""CVO"" EXCEPT SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline WHERE T2.SourceAirport  =  ""APG""",Find all airlines that have flights from airport 'CVO' but not from 'APG'.,"Translation: Show the Airlines that have flights departing from the ""CVO"" airport, excluding the Airlines that have flights departing from the ""APG"" airport.
+
+Explanation:
+1. The SQL statement starts with the SELECT keyword, indicating that we want to retrieve data from the database.
+2. We are selecting the ""Airline"" column from the ""AIRLINES"" table, which is aliased as ""T1"".
+3. We are joining the ""AIRLINES"" table (aliased as ""T1"") with the ""FLIGHTS"" table (aliased as ""T2"") based on the condition that the unique identifier (uid) of the airline in the ""AIRLINES"" table matches the ""Airline"" column in the ""FLIGHTS"" table.
+4. We are filtering the results by only selecting rows where the ""SourceAirport"" in the ""FLIGHTS"" table is equal to ""CVO"".
+5. The EXCEPT keyword is used to exclude the results that match the criteria in the following SELECT statement.
+6. The second SELECT statement is identical to the first one, except it filters by the ""SourceAirport"" being ""APG"".
+7. Therefore, the final result will show the Airlines that have flights departing from ""CVO"" but not from ""APG"".
+
+Example using the schema:
+- Assuming the ""AIRLINES"" table has columns ""uid"" and ""Airline"", and the ""FLIGHTS"" table has columns ""Airline"" and ""SourceAirport"".
+- If ""AIRLINES"" has the following data: (uid: 1, Airline: ""Airline A""), (uid: 2, Airline: ""Airline B"").
+- And ""FLIGHTS"" has the following data: (Airline: 1, SourceAirport: ""CVO""), (Airline: 2, SourceAirport: ""APG"").
+- The SQL query will return ""Airline A"" as the result, as it has flights departing from ""CVO"" but not from ""APG"".","Translation: Show the Airlines that have flights departing from the ""CVO"" airport, excluding the Airlines that have flights departing from the ""APG"" airport.","1. The SQL statement starts with the SELECT keyword, indicating that we want to retrieve data from the database.
+2. We are selecting the ""Airline"" column from the ""AIRLINES"" table, which is aliased as ""T1"".
+3. We are joining the ""AIRLINES"" table (aliased as ""T1"") with the ""FLIGHTS"" table (aliased as ""T2"") based on the condition that the unique identifier (uid) of the airline in the ""AIRLINES"" table matches the ""Airline"" column in the ""FLIGHTS"" table.
+4. We are filtering the results by only selecting rows where the ""SourceAirport"" in the ""FLIGHTS"" table is equal to ""CVO"".
+5. The EXCEPT keyword is used to exclude the results that match the criteria in the following SELECT statement.
+6. The second SELECT statement is identical to the first one, except it filters by the ""SourceAirport"" being ""APG"".
+7. Therefore, the final result will show the Airlines that have flights departing from ""CVO"" but not from ""APG"".
+
+Example using the schema:
+- Assuming the ""AIRLINES"" table has columns ""uid"" and ""Airline"", and the ""FLIGHTS"" table has columns ""Airline"" and ""SourceAirport"".
+- If ""AIRLINES"" has the following data: (uid: 1, Airline: ""Airline A""), (uid: 2, Airline: ""Airline B"").
+- And ""FLIGHTS"" has the following data: (Airline: 1, SourceAirport: ""CVO""), (Airline: 2, SourceAirport: ""APG"").
+- The SQL query will return ""Airline A"" as the result, as it has flights departing from ""CVO"" but not from ""APG"".",0.8560938,0.9345605027964203,0.9296086
+flight_2,SELECT AirportName FROM Airports WHERE AirportCode NOT IN (SELECT SourceAirport FROM Flights UNION SELECT DestAirport FROM Flights),Find the name of airports which do not have any flight in and out.,"Translation: Show the names of airports that are not listed as either source or destination airports in the Flights table.
+
+Explanation: 
+1. SELECT AirportName: We want to retrieve the AirportName column from the Airports table.
+2. FROM Airports: We are selecting data from the Airports table.
+3. WHERE AirportCode NOT IN: This filters the records in the Airports table where the AirportCode is not found in the result set of the subquery.
+4. (SELECT SourceAirport FROM Flights UNION SELECT DestAirport FROM Flights): This subquery retrieves a list of all unique airport codes that appear as either the source or destination airport in the Flights table.
+5. So, the overall query will return the names of airports that are not in the list of source or destination airports in the Flights table.
+
+Example:
+- Airports table: AirportCode, AirportName
+- Flights table: FlightID, SourceAirport, DestAirport
+
+If the Airports table contains:
+AirportCode | AirportName
+JFK | John F. Kennedy International Airport
+LAX | Los Angeles International Airport
+ORD | O'Hare International Airport
+
+And the Flights table contains:
+FlightID | SourceAirport | DestAirport
+1 | JFK | LAX
+2 | LAX | ORD
+
+The query will return:
+AirportName
+O'Hare International Airport
+
+Explanation: The query will return ""O'Hare International Airport"" because it is the only airport that is not listed as a source or destination airport in the Flights table.",Translation: Show the names of airports that are not listed as either source or destination airports in the Flights table.,"1. SELECT AirportName: We want to retrieve the AirportName column from the Airports table.
+2. FROM Airports: We are selecting data from the Airports table.
+3. WHERE AirportCode NOT IN: This filters the records in the Airports table where the AirportCode is not found in the result set of the subquery.
+4. (SELECT SourceAirport FROM Flights UNION SELECT DestAirport FROM Flights): This subquery retrieves a list of all unique airport codes that appear as either the source or destination airport in the Flights table.
+5. So, the overall query will return the names of airports that are not in the list of source or destination airports in the Flights table.
+
+Example:
+- Airports table: AirportCode, AirportName
+- Flights table: FlightID, SourceAirport, DestAirport
+
+If the Airports table contains:
+AirportCode | AirportName
+JFK | John F. Kennedy International Airport
+LAX | Los Angeles International Airport
+ORD | O'Hare International Airport
+
+And the Flights table contains:
+FlightID | SourceAirport | DestAirport
+1 | JFK | LAX
+2 | LAX | ORD
+
+The query will return:
+AirportName
+O'Hare International Airport
+
+Explanation: The query will return ""O'Hare International Airport"" because it is the only airport that is not listed as a source or destination airport in the Flights table.",0.68620825,0.8999794571288466,0.75462687
+employee_hire_evaluation,SELECT name FROM shop WHERE number_products  >  (SELECT avg(number_products) FROM shop),Find the names of stores whose number products is more than the average number of products.,"Translation: Give me the names of shops where the number of products they have is greater than the average number of products across all shops.
+
+Explanation: This SQL statement is asking for the names of shops from the ""shop"" table where the ""number_products"" column is greater than the average number of products in all shops. This is achieved by using a subquery to calculate the average number of products in all shops and then comparing it to the number of products in each shop. If the number of products in a shop is higher than the average, then that shop's name will be returned in the result set.",Translation: Give me the names of shops where the number of products they have is greater than the average number of products across all shops.,"This SQL statement is asking for the names of shops from the ""shop"" table where the ""number_products"" column is greater than the average number of products in all shops. This is achieved by using a subquery to calculate the average number of products in all shops and then comparing it to the number of products in each shop. If the number of products in a shop is higher than the average, then that shop's name will be returned in the result set.",0.74398315,0.9266650366608297,0.8926009
+employee_hire_evaluation,SELECT district FROM shop WHERE Number_products  <  3000 INTERSECT SELECT district FROM shop WHERE Number_products  >  10000,Which district has both stores with less than 3000 products and stores with more than 10000 products?,"Translation: Show the districts of shops where the number of products is less than 3000 and also greater than 10000.
+
+Explanation: 
+1. The SQL statement starts with SELECT district, which means we want to retrieve the district information from the shop table.
+2. The statement then uses the INTERSECT keyword to combine the results of two separate SELECT statements.
+3. The first SELECT statement is SELECT district FROM shop WHERE Number_products < 3000, which retrieves the districts of shops where the number of products is less than 3000.
+4. The second SELECT statement is SELECT district FROM shop WHERE Number_products > 10000, which retrieves the districts of shops where the number of products is greater than 10000.
+5. The INTERSECT operator will return only the districts that appear in both result sets, satisfying both conditions of having less than 3000 products and more than 10000 products.
+
+Example:
+- Suppose we have a shop table with the following data:
+| shop_id | district | Number_products |
+|---------|----------|-----------------|
+| 1       | A        | 2000            |
+| 2       | B        | 5000            |
+| 3       | C        | 12000           |
+
+In this example, the SQL statement would return the district ""C"" because it is the only district that satisfies both conditions (Number_products < 3000 and Number_products > 10000).",Translation: Show the districts of shops where the number of products is less than 3000 and also greater than 10000.,"1. The SQL statement starts with SELECT district, which means we want to retrieve the district information from the shop table.
+2. The statement then uses the INTERSECT keyword to combine the results of two separate SELECT statements.
+3. The first SELECT statement is SELECT district FROM shop WHERE Number_products < 3000, which retrieves the districts of shops where the number of products is less than 3000.
+4. The second SELECT statement is SELECT district FROM shop WHERE Number_products > 10000, which retrieves the districts of shops where the number of products is greater than 10000.
+5. The INTERSECT operator will return only the districts that appear in both result sets, satisfying both conditions of having less than 3000 products and more than 10000 products.
+
+Example:
+- Suppose we have a shop table with the following data:
+| shop_id | district | Number_products |
+|---------|----------|-----------------|
+| 1       | A        | 2000            |
+| 2       | B        | 5000            |
+| 3       | C        | 12000           |
+
+In this example, the SQL statement would return the district ""C"" because it is the only district that satisfies both conditions (Number_products < 3000 and Number_products > 10000).",0.6825056,0.9094059639079615,0.72980165
+cre_Doc_Template_Mgt,"SELECT document_name ,  template_id FROM Documents WHERE Document_Description LIKE ""%w%""",What is the document name and template id for document with description with the letter 'w' in it?,"Translation: Show the document name and template ID for documents where the document description contains the letter ""w"".
+
+Explanation: This SQL statement is requesting data from the ""Documents"" table. It is specifically asking for the ""document_name"" and ""template_id"" columns. The condition specified in the WHERE clause is looking for rows where the ""Document_Description"" column contains the letter ""w"". The ""%"" symbol is a wildcard that means any characters can appear before or after the letter ""w"". 
+
+For example, if we have the following data in the ""Documents"" table:
+
+| document_name | template_id | Document_Description |
+|---------------|-------------|----------------------|
+| Document1     | 1           | This is a test       |
+| Document2     | 2           | Report with charts   |
+| Document3     | 3           | Weekly update        |
+
+The SQL statement would return:
+
+| document_name | template_id |
+|---------------|-------------|
+| Document2     | 2           |
+| Document3     | 3           |
+
+This is because only ""Document2"" and ""Document3"" have a document description that contains the letter ""w"".","Translation: Show the document name and template ID for documents where the document description contains the letter ""w"".","This SQL statement is requesting data from the ""Documents"" table. It is specifically asking for the ""document_name"" and ""template_id"" columns. The condition specified in the WHERE clause is looking for rows where the ""Document_Description"" column contains the letter ""w"". The ""%"" symbol is a wildcard that means any characters can appear before or after the letter ""w"". 
+
+For example, if we have the following data in the ""Documents"" table:
+
+| document_name | template_id | Document_Description |
+|---------------|-------------|----------------------|
+| Document1     | 1           | This is a test       |
+| Document2     | 2           | Report with charts   |
+| Document3     | 3           | Weekly update        |
+
+The SQL statement would return:
+
+| document_name | template_id |
+|---------------|-------------|
+| Document2     | 2           |
+| Document3     | 3           |
+
+This is because only ""Document2"" and ""Document3"" have a document description that contains the letter ""w"".",0.7940555,0.9414657377052467,0.88102794
+course_teach,SELECT Name FROM teacher WHERE Teacher_id NOT IN (SELECT Teacher_id FROM course_arrange),List the names of teachers who have not been arranged to teach courses.,"Translation: Retrieve the names of teachers who do not have any courses arranged.
+
+Explanation: This SQL statement is asking to select the ""Name"" column from the ""teacher"" table where the ""Teacher_id"" is not found in the list of ""Teacher_id"" values from the ""course_arrange"" table. This means we want to find teachers who do not have any entries in the ""course_arrange"" table, indicating they do not have any courses scheduled.
+
+Example using the context:
+
+teacher table:
+| Teacher_id | Name     |
+|------------|----------|
+| 1          | John     |
+| 2          | Emily    |
+| 3          | Michael  |
+
+course_arrange table:
+| Teacher_id | Course_id |
+|------------|-----------|
+| 1          | 101       |
+| 2          | 102       |
+
+In this example, the SQL statement would return ""Michael"" as the result, as he does not have any entries in the ""course_arrange"" table, meaning he does not have any courses arranged.",Translation: Retrieve the names of teachers who do not have any courses arranged.,"This SQL statement is asking to select the ""Name"" column from the ""teacher"" table where the ""Teacher_id"" is not found in the list of ""Teacher_id"" values from the ""course_arrange"" table. This means we want to find teachers who do not have any entries in the ""course_arrange"" table, indicating they do not have any courses scheduled.
+
+Example using the context:
+
+teacher table:
+| Teacher_id | Name     |
+|------------|----------|
+| 1          | John     |
+| 2          | Emily    |
+| 3          | Michael  |
+
+course_arrange table:
+| Teacher_id | Course_id |
+|------------|-----------|
+| 1          | 101       |
+| 2          | 102       |
+
+In this example, the SQL statement would return ""Michael"" as the result, as he does not have any entries in the ""course_arrange"" table, meaning he does not have any courses arranged.",0.7544818,0.9333041155279335,0.8441874
+museum_visit,SELECT name FROM museum WHERE num_of_staff  >  (SELECT min(num_of_staff) FROM museum WHERE open_year  >  2010),find the names of museums which have more staff than the minimum staff number of all museums opened after 2010.,"Translation: Retrieve the names of museums where the number of staff is greater than the minimum number of staff among museums that were opened after the year 2010.
+
+Explanation: 
+1. First, we need to find the minimum number of staff among museums that were opened after the year 2010. This is done by the inner query: 
+   ```sql
+   SELECT min(num_of_staff) FROM museum WHERE open_year > 2010
+   ```
+   This query will give us the minimum number of staff among museums that opened after 2010.
+
+2. The outer query then selects the names of museums where the number of staff is greater than the result of the inner query:
+   ```sql
+   SELECT name FROM museum WHERE num_of_staff > (SELECT min(num_of_staff) FROM museum WHERE open_year > 2010)
+   ```
+   This query will retrieve the names of museums that have a number of staff greater than the minimum number of staff among museums that opened after 2010.
+
+For example, given the following data in the museum table:
+| name           | num_of_staff | open_year |
+|----------------|--------------|-----------|
+| Museum A       | 50           | 2012      |
+| Museum B       | 30           | 2015      |
+| Museum C       | 20           | 2008      |
+| Museum D       | 40           | 2018      |
+
+The inner query will calculate the minimum number of staff among museums opened after 2010, which is 30 (from Museum B). The outer query will then return the names of museums with a number of staff greater than 30, which would be Museum A and Museum D.",Translation: Retrieve the names of museums where the number of staff is greater than the minimum number of staff among museums that were opened after the year 2010.,"1. First, we need to find the minimum number of staff among museums that were opened after the year 2010. This is done by the inner query: 
+   ```sql
+   SELECT min(num_of_staff) FROM museum WHERE open_year > 2010
+   ```
+   This query will give us the minimum number of staff among museums that opened after 2010.
+
+2. The outer query then selects the names of museums where the number of staff is greater than the result of the inner query:
+   ```sql
+   SELECT name FROM museum WHERE num_of_staff > (SELECT min(num_of_staff) FROM museum WHERE open_year > 2010)
+   ```
+   This query will retrieve the names of museums that have a number of staff greater than the minimum number of staff among museums that opened after 2010.
+
+For example, given the following data in the museum table:
+| name           | num_of_staff | open_year |
+|----------------|--------------|-----------|
+| Museum A       | 50           | 2012      |
+| Museum B       | 30           | 2015      |
+| Museum C       | 20           | 2008      |
+| Museum D       | 40           | 2018      |
+
+The inner query will calculate the minimum number of staff among museums opened after 2010, which is 30 (from Museum B). The outer query will then return the names of museums with a number of staff greater than 30, which would be Museum A and Museum D.",0.87679696,0.9622033765866242,0.93033284
+museum_visit,"SELECT t2.visitor_id ,  t1.name ,  t1.Level_of_membership FROM visitor AS t1 JOIN visit AS t2 ON t1.id  =  t2.visitor_id GROUP BY t2.visitor_id ORDER BY sum(t2.Total_spent) DESC LIMIT 1","What are the id, name and membership level of visitors who have spent the largest amount of money in total in all museum tickets?","Translation: Show the visitor ID, name, and level of membership of the visitor who has spent the most in total.
+
+Explanation:
+1. SELECT t2.visitor_id, t1.name, t1.Level_of_membership: We are selecting the visitor ID from the visit table (aliased as t2), the name and level of membership from the visitor table (aliased as t1).
+
+2. FROM visitor AS t1 JOIN visit AS t2 ON t1.id = t2.visitor_id: We are getting data from the visitor table (aliased as t1) and the visit table (aliased as t2) and joining them on the condition that the visitor ID from the visitor table matches the visitor ID in the visit table.
+
+3. GROUP BY t2.visitor_id: We are grouping the results by the visitor ID from the visit table, ensuring that each visitor's data is shown together.
+
+4. ORDER BY sum(t2.Total_spent) DESC: We are ordering the results by the sum of the Total_spent column in the visit table in descending order, so the visitor who has spent the most will be at the top.
+
+5. LIMIT 1: We are limiting the results to only show the first row, which will be the visitor who has spent the most in total.
+
+Example using the schema:
+- visitor table: id, name, Level_of_membership
+- visit table: visitor_id, Total_spent
+
+If we have the following data:
+visitor table:
+1, John, Gold
+2, Sarah, Silver
+3, Mike, Bronze
+
+visit table:
+1, 100
+2, 200
+3, 150
+2, 300
+
+The query will return:
+visitor_id: 2, name: Sarah, Level_of_membership: Silver","Translation: Show the visitor ID, name, and level of membership of the visitor who has spent the most in total.","1. SELECT t2.visitor_id, t1.name, t1.Level_of_membership: We are selecting the visitor ID from the visit table (aliased as t2), the name and level of membership from the visitor table (aliased as t1).
+
+2. FROM visitor AS t1 JOIN visit AS t2 ON t1.id = t2.visitor_id: We are getting data from the visitor table (aliased as t1) and the visit table (aliased as t2) and joining them on the condition that the visitor ID from the visitor table matches the visitor ID in the visit table.
+
+3. GROUP BY t2.visitor_id: We are grouping the results by the visitor ID from the visit table, ensuring that each visitor's data is shown together.
+
+4. ORDER BY sum(t2.Total_spent) DESC: We are ordering the results by the sum of the Total_spent column in the visit table in descending order, so the visitor who has spent the most will be at the top.
+
+5. LIMIT 1: We are limiting the results to only show the first row, which will be the visitor who has spent the most in total.
+
+Example using the schema:
+- visitor table: id, name, Level_of_membership
+- visit table: visitor_id, Total_spent
+
+If we have the following data:
+visitor table:
+1, John, Gold
+2, Sarah, Silver
+3, Mike, Bronze
+
+visit table:
+1, 100
+2, 200
+3, 150
+2, 300
+
+The query will return:
+visitor_id: 2, name: Sarah, Level_of_membership: Silver",0.5982217,0.8871748660162598,0.80098385
+wta_1,"SELECT sum(ranking_points) ,  T1.first_name FROM players AS T1 JOIN rankings AS T2 ON T1.player_id  =  T2.player_id GROUP BY T1.first_name",Find the total ranking points for each player and their first name.,"Translation: Show the total ranking points and the first name of each player from the players table who are also in the rankings table.
+
+Explanation:
+1. SELECT sum(ranking_points), T1.first_name: We are selecting the sum of ranking points and the first name from the players table.
+2. FROM players AS T1: We are getting the data from the players table and aliasing it as T1.
+3. JOIN rankings AS T2 ON T1.player_id = T2.player_id: We are joining the players table with the rankings table based on the player_id column to match players with their corresponding rankings.
+4. GROUP BY T1.first_name: We are grouping the results by the first name of the players to get the total ranking points for each player.
+
+Example using the context:
+- If the players table has columns player_id, first_name, last_name, and the rankings table has columns player_id, ranking_points, week_number, the query will sum up the ranking_points for each player and display their first name. This allows us to see the total ranking points achieved by each player.",Translation: Show the total ranking points and the first name of each player from the players table who are also in the rankings table.,"1. SELECT sum(ranking_points), T1.first_name: We are selecting the sum of ranking points and the first name from the players table.
+2. FROM players AS T1: We are getting the data from the players table and aliasing it as T1.
+3. JOIN rankings AS T2 ON T1.player_id = T2.player_id: We are joining the players table with the rankings table based on the player_id column to match players with their corresponding rankings.
+4. GROUP BY T1.first_name: We are grouping the results by the first name of the players to get the total ranking points for each player.
+
+Example using the context:
+- If the players table has columns player_id, first_name, last_name, and the rankings table has columns player_id, ranking_points, week_number, the query will sum up the ranking_points for each player and display their first name. This allows us to see the total ranking points achieved by each player.",0.80492276,0.9229715106286176,0.9105357
+student_transcripts_tracking,"SELECT T1.degree_program_id ,  T1.degree_summary_name FROM Degree_Programs AS T1 JOIN Student_Enrolment AS T2 ON T1.degree_program_id  =  T2.degree_program_id GROUP BY T1.degree_program_id ORDER BY count(*) DESC LIMIT 1",Find the program which most number of students are enrolled in. List both the id and the summary.,"Translation: Show the degree program ID and degree summary name from the Degree Programs table, where the degree program ID matches in the Student Enrolment table. Group the results by degree program ID, order them by the count of occurrences in descending order, and only show the top result.
+
+Explanation:
+1. SELECT T1.degree_program_id, T1.degree_summary_name: This part of the statement selects the degree program ID and degree summary name from the Degree Programs table. The alias ""T1"" is used to reference the Degree Programs table.
+
+2. FROM Degree_Programs AS T1: This specifies that the data will be retrieved from the Degree Programs table and aliases the table as ""T1"" for easier reference in the query.
+
+3. JOIN Student_Enrolment AS T2 ON T1.degree_program_id = T2.degree_program_id: This part of the statement joins the Degree Programs table with the Student Enrolment table based on the degree program ID, which is common between the two tables. The alias ""T2"" is used for the Student Enrolment table.
+
+4. GROUP BY T1.degree_program_id: This groups the results by the degree program ID from the Degree Programs table.
+
+5. ORDER BY count(*) DESC: This orders the grouped results by the count of occurrences in descending order. The count(*) function is used to count the number of occurrences of each degree program ID.
+
+6. LIMIT 1: This limits the output to only show the top result, which will be the degree program ID with the highest count of occurrences.
+
+Example:
+Degree_Programs table:
+| degree_program_id | degree_summary_name |
+|-------------------|---------------------|
+| 1                 | Computer Science    |
+| 2                 | Business Management |
+| 3                 | Psychology          |
+
+Student_Enrolment table:
+| student_id | degree_program_id | enrollment_date |
+|------------|-------------------|-----------------|
+| 1          | 1                 | 2022-01-15      |
+| 2          | 1                 | 2022-02-20      |
+| 3          | 2                 | 2021-12-10      |
+| 4          | 2                 | 2022-03-05      |
+| 5          | 3                 | 2022-01-30      |
+
+In this example, if we run the SQL statement, it will return:
+| degree_program_id | degree_summary_name |
+|-------------------|---------------------|
+| 1                 | Computer Science    |
+
+This is because the degree program ID 1 (Computer Science) has the highest count of occurrences in the Student Enrolment table.","Translation: Show the degree program ID and degree summary name from the Degree Programs table, where the degree program ID matches in the Student Enrolment table. Group the results by degree program ID, order them by the count of occurrences in descending order, and only show the top result.","1. SELECT T1.degree_program_id, T1.degree_summary_name: This part of the statement selects the degree program ID and degree summary name from the Degree Programs table. The alias ""T1"" is used to reference the Degree Programs table.
+
+2. FROM Degree_Programs AS T1: This specifies that the data will be retrieved from the Degree Programs table and aliases the table as ""T1"" for easier reference in the query.
+
+3. JOIN Student_Enrolment AS T2 ON T1.degree_program_id = T2.degree_program_id: This part of the statement joins the Degree Programs table with the Student Enrolment table based on the degree program ID, which is common between the two tables. The alias ""T2"" is used for the Student Enrolment table.
+
+4. GROUP BY T1.degree_program_id: This groups the results by the degree program ID from the Degree Programs table.
+
+5. ORDER BY count(*) DESC: This orders the grouped results by the count of occurrences in descending order. The count(*) function is used to count the number of occurrences of each degree program ID.
+
+6. LIMIT 1: This limits the output to only show the top result, which will be the degree program ID with the highest count of occurrences.
+
+Example:
+Degree_Programs table:
+| degree_program_id | degree_summary_name |
+|-------------------|---------------------|
+| 1                 | Computer Science    |
+| 2                 | Business Management |
+| 3                 | Psychology          |
+
+Student_Enrolment table:
+| student_id | degree_program_id | enrollment_date |
+|------------|-------------------|-----------------|
+| 1          | 1                 | 2022-01-15      |
+| 2          | 1                 | 2022-02-20      |
+| 3          | 2                 | 2021-12-10      |
+| 4          | 2                 | 2022-03-05      |
+| 5          | 3                 | 2022-01-30      |
+
+In this example, if we run the SQL statement, it will return:
+| degree_program_id | degree_summary_name |
+|-------------------|---------------------|
+| 1                 | Computer Science    |
+
+This is because the degree program ID 1 (Computer Science) has the highest count of occurrences in the Student Enrolment table.",0.62477934,0.8787824963070757,0.6944504
+student_transcripts_tracking,SELECT DISTINCT T2.semester_id FROM Degree_Programs AS T1 JOIN Student_Enrolment AS T2 ON T1.degree_program_id  =  T2.degree_program_id WHERE degree_summary_name  =  'Master' INTERSECT SELECT DISTINCT T2.semester_id FROM Degree_Programs AS T1 JOIN Student_Enrolment AS T2 ON T1.degree_program_id  =  T2.degree_program_id WHERE degree_summary_name  =  'Bachelor',Find the semester when both Master students and Bachelor students got enrolled in.,"Translation: List the semester IDs where students are enrolled in both Master's and Bachelor's degree programs.
+
+Explanation:
+1. SELECT DISTINCT T2.semester_id: We are selecting the distinct semester IDs from the Student_Enrolment table as T2.
+2. FROM Degree_Programs AS T1 JOIN Student_Enrolment AS T2 ON T1.degree_program_id = T2.degree_program_id: We are joining the Degree_Programs table as T1 with the Student_Enrolment table as T2 based on the degree_program_id to get the semester IDs related to degree programs.
+3. WHERE degree_summary_name = 'Master': We are filtering the results to only include rows where the degree_summary_name is 'Master'.
+4. INTERSECT: This operator is used to combine the results of two SELECT statements, returning only the rows that are common to both result sets.
+5. SELECT DISTINCT T2.semester_id: We are selecting the distinct semester IDs from the Student_Enrolment table as T2 again.
+6. WHERE degree_summary_name = 'Bachelor': We are filtering the results to only include rows where the degree_summary_name is 'Bachelor'.
+
+By performing this query, we are finding the semester IDs where students are enrolled in both Master's and Bachelor's degree programs. This is done by first selecting the semester IDs related to Master's degree programs and then finding the intersection with the semester IDs related to Bachelor's degree programs.",Translation: List the semester IDs where students are enrolled in both Master's and Bachelor's degree programs.,"1. SELECT DISTINCT T2.semester_id: We are selecting the distinct semester IDs from the Student_Enrolment table as T2.
+2. FROM Degree_Programs AS T1 JOIN Student_Enrolment AS T2 ON T1.degree_program_id = T2.degree_program_id: We are joining the Degree_Programs table as T1 with the Student_Enrolment table as T2 based on the degree_program_id to get the semester IDs related to degree programs.
+3. WHERE degree_summary_name = 'Master': We are filtering the results to only include rows where the degree_summary_name is 'Master'.
+4. INTERSECT: This operator is used to combine the results of two SELECT statements, returning only the rows that are common to both result sets.
+5. SELECT DISTINCT T2.semester_id: We are selecting the distinct semester IDs from the Student_Enrolment table as T2 again.
+6. WHERE degree_summary_name = 'Bachelor': We are filtering the results to only include rows where the degree_summary_name is 'Bachelor'.
+
+By performing this query, we are finding the semester IDs where students are enrolled in both Master's and Bachelor's degree programs. This is done by first selecting the semester IDs related to Master's degree programs and then finding the intersection with the semester IDs related to Bachelor's degree programs.",0.70532686,0.9114089033440538,0.9032372
+voter_1,SELECT T3.area_code FROM contestants AS T1 JOIN votes AS T2 ON T1.contestant_number  =  T2.contestant_number JOIN area_code_state AS T3 ON T2.state  =  T3.state WHERE T1.contestant_name  =  'Tabatha Gehling' INTERSECT SELECT T3.area_code FROM contestants AS T1 JOIN votes AS T2 ON T1.contestant_number  =  T2.contestant_number JOIN area_code_state AS T3 ON T2.state  =  T3.state WHERE T1.contestant_name  =  'Kelly Clauss',List the area codes in which voters voted both for the contestant 'Tabatha Gehling' and the contestant 'Kelly Clauss'.,"Translation: Show the area codes of the states where Tabatha Gehling and Kelly Clauss received votes.
+
+Explanation: 
+1. SELECT T3.area_code: We want to select the area_code column from the area_code_state table.
+2. FROM contestants AS T1: We start by looking at the contestants table and alias it as T1.
+3. JOIN votes AS T2 ON T1.contestant_number = T2.contestant_number: We join the votes table using the contestant_number column, linking the two tables.
+4. JOIN area_code_state AS T3 ON T2.state = T3.state: We then join the area_code_state table using the state column from the votes table, linking them based on the state.
+5. WHERE T1.contestant_name = 'Tabatha Gehling': We filter the results to only include rows where the contestant_name is 'Tabatha Gehling'.
+6. INTERSECT: This keyword is used to combine the results of two SELECT statements and return only the rows that appear in both result sets.
+7. The second part of the query is similar to the first part but filters for 'Kelly Clauss' instead of 'Tabatha Gehling'.
+8. By using INTERSECT, we are finding the area codes of states where both Tabatha Gehling and Kelly Clauss received votes.",Translation: Show the area codes of the states where Tabatha Gehling and Kelly Clauss received votes.,"1. SELECT T3.area_code: We want to select the area_code column from the area_code_state table.
+2. FROM contestants AS T1: We start by looking at the contestants table and alias it as T1.
+3. JOIN votes AS T2 ON T1.contestant_number = T2.contestant_number: We join the votes table using the contestant_number column, linking the two tables.
+4. JOIN area_code_state AS T3 ON T2.state = T3.state: We then join the area_code_state table using the state column from the votes table, linking them based on the state.
+5. WHERE T1.contestant_name = 'Tabatha Gehling': We filter the results to only include rows where the contestant_name is 'Tabatha Gehling'.
+6. INTERSECT: This keyword is used to combine the results of two SELECT statements and return only the rows that appear in both result sets.
+7. The second part of the query is similar to the first part but filters for 'Kelly Clauss' instead of 'Tabatha Gehling'.
+8. By using INTERSECT, we are finding the area codes of states where both Tabatha Gehling and Kelly Clauss received votes.",0.77745587,0.9391107862034547,0.90348494
+world_1,"SELECT * FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  ""English"" AND IsOfficial  =  ""T"" UNION SELECT * FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  ""Dutch"" AND IsOfficial  =  ""T""",Which countries have either English or Dutch as an official language?,"Translation: Show all columns from the country table and the countrylanguage table where the language is English and is the official language or where the language is Dutch and is the official language.
+
+Explanation:
+1. SELECT *: This statement is used to select all columns.
+2. FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode: This part of the statement is performing a join operation between the country table (aliased as T1) and the countrylanguage table (aliased as T2) based on the country code in the country table matching the country code in the countrylanguage table.
+3. WHERE T2.Language = ""English"" AND IsOfficial = ""T"": This condition filters the results to only include rows where the language is English and is the official language.
+4. UNION: This keyword is used to combine the results of two SELECT statements into a single result set.
+5. SELECT *: This second SELECT statement is the same as the first one but filters for the Dutch language instead of English.
+
+Example using the given schema:
+- country table: Code, Name, Continent, Region, SurfaceArea, IndepYear, Population, LifeExpectancy, GNP, GNPOld, LocalName, GovernmentForm, HeadOfState, Capital, Code2
+- countrylanguage table: CountryCode, Language, IsOfficial, Percentage
+
+In this case, the SQL statement will retrieve all columns from the country and countrylanguage tables where the language is either English or Dutch and is the official language. This will provide information about countries where English or Dutch is the official language.",Translation: Show all columns from the country table and the countrylanguage table where the language is English and is the official language or where the language is Dutch and is the official language.,"1. SELECT *: This statement is used to select all columns.
+2. FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode: This part of the statement is performing a join operation between the country table (aliased as T1) and the countrylanguage table (aliased as T2) based on the country code in the country table matching the country code in the countrylanguage table.
+3. WHERE T2.Language = ""English"" AND IsOfficial = ""T"": This condition filters the results to only include rows where the language is English and is the official language.
+4. UNION: This keyword is used to combine the results of two SELECT statements into a single result set.
+5. SELECT *: This second SELECT statement is the same as the first one but filters for the Dutch language instead of English.
+
+Example using the given schema:
+- country table: Code, Name, Continent, Region, SurfaceArea, IndepYear, Population, LifeExpectancy, GNP, GNPOld, LocalName, GovernmentForm, HeadOfState, Capital, Code2
+- countrylanguage table: CountryCode, Language, IsOfficial, Percentage
+
+In this case, the SQL statement will retrieve all columns from the country and countrylanguage tables where the language is either English or Dutch and is the official language. This will provide information about countries where English or Dutch is the official language.",0.5850588,0.858551902689243,0.7652075
+world_1,"SELECT avg(LifeExpectancy) FROM country WHERE Name NOT IN (SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  ""English"" AND T2.IsOfficial  =  ""T"")",What is average life expectancy in the countries where English is not the official language?,"Translation: Find the average life expectancy of countries where the country name is not in the list of countries where English is an official language.
+
+Explanation:
+1. SELECT avg(LifeExpectancy): This part of the SQL statement selects the average value of the column LifeExpectancy from the country table.
+2. FROM country: This specifies that the data will be retrieved from the country table.
+3. WHERE Name NOT IN (SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = ""English"" AND T2.IsOfficial = ""T""): This is a subquery that filters out countries where English is an official language. It selects the names of countries from the country table that have English as an official language in the countrylanguage table, then the main query excludes these countries from the calculation of the average life expectancy.
+
+Example:
+- If we have a country table with columns (Name, LifeExpectancy) and a countrylanguage table with columns (CountryCode, Language, IsOfficial), the subquery in this SQL statement will find the names of countries where English is an official language, and the main query will calculate the average life expectancy of countries that are not in this list.",Translation: Find the average life expectancy of countries where the country name is not in the list of countries where English is an official language.,"1. SELECT avg(LifeExpectancy): This part of the SQL statement selects the average value of the column LifeExpectancy from the country table.
+2. FROM country: This specifies that the data will be retrieved from the country table.
+3. WHERE Name NOT IN (SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = ""English"" AND T2.IsOfficial = ""T""): This is a subquery that filters out countries where English is an official language. It selects the names of countries from the country table that have English as an official language in the countrylanguage table, then the main query excludes these countries from the calculation of the average life expectancy.
+
+Example:
+- If we have a country table with columns (Name, LifeExpectancy) and a countrylanguage table with columns (CountryCode, Language, IsOfficial), the subquery in this SQL statement will find the names of countries where English is an official language, and the main query will calculate the average life expectancy of countries that are not in this list.",0.67996347,0.9410907607828636,0.92086124
+world_1,"SELECT Name FROM country WHERE SurfaceArea  >  (SELECT min(SurfaceArea) FROM country WHERE Continent  =  ""Europe"")",What are the countries that have greater surface area than any country in Europe?,"Translation: Show the names of countries where the Surface Area is greater than the smallest Surface Area of countries in Europe.
+
+Explanation: 
+1. First, we need to find the smallest Surface Area of countries in Europe. We do this by using a subquery within the WHERE clause. 
+2. The subquery (SELECT min(SurfaceArea) FROM country WHERE Continent = ""Europe"") will return the smallest Surface Area value among the countries in Europe.
+3. Once we have this value, we will then select the names of countries from the 'country' table where the Surface Area is greater than the value obtained from the subquery.
+4. The final result will be a list of country names that have a Surface Area larger than the smallest Surface Area of countries in Europe.
+
+Example using the schema:
+- 'country' table has columns: Name, SurfaceArea, Continent
+- Let's say the smallest Surface Area of a country in Europe is 1000. 
+- The SQL statement will then retrieve the names of countries whose Surface Area is greater than 1000.",Translation: Show the names of countries where the Surface Area is greater than the smallest Surface Area of countries in Europe.,"1. First, we need to find the smallest Surface Area of countries in Europe. We do this by using a subquery within the WHERE clause. 
+2. The subquery (SELECT min(SurfaceArea) FROM country WHERE Continent = ""Europe"") will return the smallest Surface Area value among the countries in Europe.
+3. Once we have this value, we will then select the names of countries from the 'country' table where the Surface Area is greater than the value obtained from the subquery.
+4. The final result will be a list of country names that have a Surface Area larger than the smallest Surface Area of countries in Europe.
+
+Example using the schema:
+- 'country' table has columns: Name, SurfaceArea, Continent
+- Let's say the smallest Surface Area of a country in Europe is 1000. 
+- The SQL statement will then retrieve the names of countries whose Surface Area is greater than 1000.",0.7382853,0.9036524042320166,0.889236
+world_1,"SELECT CountryCode FROM countrylanguage EXCEPT SELECT CountryCode FROM countrylanguage WHERE LANGUAGE  =  ""English""",What are the country codes for countries that do not speak English?,"Translation: Show all the CountryCodes from the countrylanguage table except for those where the language is English.
+
+Explanation: This SQL statement is querying data from the countrylanguage table. The EXCEPT keyword is used to subtract the result of the second SELECT statement from the first SELECT statement. In this case, the first SELECT statement retrieves all CountryCodes from the countrylanguage table, while the second SELECT statement specifically filters out CountryCodes where the language is English. The final result will be all CountryCodes from countrylanguage except for those where the language is English. 
+
+Example:
+- First SELECT statement: SELECT CountryCode FROM countrylanguage
+- Second SELECT statement: SELECT CountryCode FROM countrylanguage WHERE Language = ""English""
+
+Based on the schema, the countrylanguage table likely contains columns such as CountryCode and Language. The query will return all CountryCodes from the countrylanguage table except for those where the Language is set to ""English"".",Translation: Show all the CountryCodes from the countrylanguage table except for those where the language is English.,"This SQL statement is querying data from the countrylanguage table. The EXCEPT keyword is used to subtract the result of the second SELECT statement from the first SELECT statement. In this case, the first SELECT statement retrieves all CountryCodes from the countrylanguage table, while the second SELECT statement specifically filters out CountryCodes where the language is English. The final result will be all CountryCodes from countrylanguage except for those where the language is English. 
+
+Example:
+- First SELECT statement: SELECT CountryCode FROM countrylanguage
+- Second SELECT statement: SELECT CountryCode FROM countrylanguage WHERE Language = ""English""
+
+Based on the schema, the countrylanguage table likely contains columns such as CountryCode and Language. The query will return all CountryCodes from the countrylanguage table except for those where the Language is set to ""English"".",0.64315146,0.8454725117172829,0.6941421
+world_1,SELECT DISTINCT T2.Name FROM country AS T1 JOIN city AS T2 ON T2.CountryCode  =  T1.Code WHERE T1.Continent  =  'Europe' AND T1.Name NOT IN (SELECT T3.Name FROM country AS T3 JOIN countrylanguage AS T4 ON T3.Code  =  T4.CountryCode WHERE T4.IsOfficial  =  'T' AND T4.Language  =  'English'),Which cities are in European countries where English is not the official language?,"Translation: Show the unique names of cities in Europe that are not in countries where English is the official language.
+
+Explanation:
+1. SELECT DISTINCT T2.Name: We are selecting the unique names of cities from the ""city"" table (aliased as T2).
+2. FROM country AS T1: We are getting data from the ""country"" table and aliasing it as T1.
+3. JOIN city AS T2 ON T2.CountryCode = T1.Code: We are joining the ""city"" table with the ""country"" table based on the condition that the CountryCode in the ""city"" table matches the Code in the ""country"" table.
+4. WHERE T1.Continent = 'Europe': We are filtering the results to only include countries where the Continent is 'Europe'.
+5. AND T1.Name NOT IN (SELECT T3.Name FROM country AS T3 JOIN countrylanguage AS T4 ON T3.Code = T4.CountryCode WHERE T4.IsOfficial = 'T' AND T4.Language = 'English'): We are further filtering the results to exclude countries where English is the official language. This is done by checking if the country's Name is not in the subquery result where English is the official language.
+
+Example:
+- If we have the following data in our tables:
+  - In the ""country"" table: Code = 'FRA', Continent = 'Europe', Name = 'France'
+  - In the ""city"" table: CountryCode = 'FRA', Name = 'Paris'
+  - In the ""countrylanguage"" table: CountryCode = 'FRA', IsOfficial = 'T', Language = 'English'
+- The result of the SQL query would be an empty set since France has English as an official language.",Translation: Show the unique names of cities in Europe that are not in countries where English is the official language.,"1. SELECT DISTINCT T2.Name: We are selecting the unique names of cities from the ""city"" table (aliased as T2).
+2. FROM country AS T1: We are getting data from the ""country"" table and aliasing it as T1.
+3. JOIN city AS T2 ON T2.CountryCode = T1.Code: We are joining the ""city"" table with the ""country"" table based on the condition that the CountryCode in the ""city"" table matches the Code in the ""country"" table.
+4. WHERE T1.Continent = 'Europe': We are filtering the results to only include countries where the Continent is 'Europe'.
+5. AND T1.Name NOT IN (SELECT T3.Name FROM country AS T3 JOIN countrylanguage AS T4 ON T3.Code = T4.CountryCode WHERE T4.IsOfficial = 'T' AND T4.Language = 'English'): We are further filtering the results to exclude countries where English is the official language. This is done by checking if the country's Name is not in the subquery result where English is the official language.
+
+Example:
+- If we have the following data in our tables:
+  - In the ""country"" table: Code = 'FRA', Continent = 'Europe', Name = 'France'
+  - In the ""city"" table: CountryCode = 'FRA', Name = 'Paris'
+  - In the ""countrylanguage"" table: CountryCode = 'FRA', IsOfficial = 'T', Language = 'English'
+- The result of the SQL query would be an empty set since France has English as an official language.",0.6820259,0.8990425719809592,0.8684818
+world_1,"SELECT COUNT(T2.Language) ,  T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode GROUP BY T1.Name HAVING COUNT(*)  >  2",Return the country name and the numbers of languages spoken for each country that speaks at least 3 languages.,"Translation: How many languages does each country have where the country has more than 2 languages spoken?
+
+Explanation:
+
+1. SELECT COUNT(T2.Language), T1.Name: We are selecting the count of languages spoken in each country (using the table countrylanguage as T2) and the name of the country (using the table country as T1).
+
+2. FROM country AS T1: We are getting the data from the country table and aliasing it as T1.
+
+3. JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode: We are joining the country table with the countrylanguage table based on the country code to link the two tables together.
+
+Example: If we have a country called Japan (with Code = JPN) and in the countrylanguage table, there are multiple rows with CountryCode = JPN and different languages, this join will connect the country Japan with its corresponding languages.
+
+4. GROUP BY T1.Name: We are grouping the results by the name of the country to count the number of languages per country.
+
+Example: If we have countries like Japan, Germany, and France, this statement will group the count of languages for each of these countries separately.
+
+5. HAVING COUNT(*) > 2: We are filtering the grouped results to only show the countries where the count of languages is greater than 2.
+
+Example: If Germany has 3 languages listed in the countrylanguage table, it will be included in the final result, but if France only has 2 languages, it will be excluded.
+
+Overall, this SQL statement will give us the count of languages spoken in each country where the country has more than 2 languages.",Translation: How many languages does each country have where the country has more than 2 languages spoken?,"1. SELECT COUNT(T2.Language), T1.Name: We are selecting the count of languages spoken in each country (using the table countrylanguage as T2) and the name of the country (using the table country as T1).
+
+2. FROM country AS T1: We are getting the data from the country table and aliasing it as T1.
+
+3. JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode: We are joining the country table with the countrylanguage table based on the country code to link the two tables together.
+
+Example: If we have a country called Japan (with Code = JPN) and in the countrylanguage table, there are multiple rows with CountryCode = JPN and different languages, this join will connect the country Japan with its corresponding languages.
+
+4. GROUP BY T1.Name: We are grouping the results by the name of the country to count the number of languages per country.
+
+Example: If we have countries like Japan, Germany, and France, this statement will group the count of languages for each of these countries separately.
+
+5. HAVING COUNT(*) > 2: We are filtering the grouped results to only show the countries where the count of languages is greater than 2.
+
+Example: If Germany has 3 languages listed in the countrylanguage table, it will be included in the final result, but if France only has 2 languages, it will be excluded.
+
+Overall, this SQL statement will give us the count of languages spoken in each country where the country has more than 2 languages.",0.7656341,0.886654721955856,0.82024455
+orchestra,SELECT T1.Name FROM conductor AS T1 JOIN orchestra AS T2 ON T1.Conductor_ID  =  T2.Conductor_ID GROUP BY T2.Conductor_ID ORDER BY COUNT(*) DESC LIMIT 1,Show the name of the conductor that has conducted the most number of orchestras.,"Translation: Show the name of the conductor who has conducted the most orchestras.
+
+Explanation:
+1. SELECT T1.Name: This part of the statement selects the 'Name' column from the 'conductor' table (aliased as T1).
+2. FROM conductor AS T1: Specifies that the data is being retrieved from the 'conductor' table and assigns an alias of T1 to this table.
+3. JOIN orchestra AS T2 ON T1.Conductor_ID = T2.Conductor_ID: Joins the 'conductor' table with the 'orchestra' table using the 'Conductor_ID' column to match the conductors in both tables.
+4. GROUP BY T2.Conductor_ID: Groups the results by the 'Conductor_ID' from the 'orchestra' table to count the number of orchestras conducted by each conductor.
+5. ORDER BY COUNT(*) DESC: Orders the results in descending order based on the count of orchestras conducted by each conductor.
+6. LIMIT 1: Limits the output to only the top result, which is the conductor who has conducted the most orchestras.
+
+Example with Context:
+- 'conductor' table columns: Conductor_ID, Name
+- 'orchestra' table columns: Orchestra_ID, Conductor_ID
+
+Based on the provided SQL statement and the schema, the query will join the 'conductor' and 'orchestra' tables on the 'Conductor_ID' column, group the results by conductor, count the number of orchestras conducted by each conductor, order the results in descending order of the count, and finally limit the output to show only the top conductor who has conducted the most orchestras.",Translation: Show the name of the conductor who has conducted the most orchestras.,"1. SELECT T1.Name: This part of the statement selects the 'Name' column from the 'conductor' table (aliased as T1).
+2. FROM conductor AS T1: Specifies that the data is being retrieved from the 'conductor' table and assigns an alias of T1 to this table.
+3. JOIN orchestra AS T2 ON T1.Conductor_ID = T2.Conductor_ID: Joins the 'conductor' table with the 'orchestra' table using the 'Conductor_ID' column to match the conductors in both tables.
+4. GROUP BY T2.Conductor_ID: Groups the results by the 'Conductor_ID' from the 'orchestra' table to count the number of orchestras conducted by each conductor.
+5. ORDER BY COUNT(*) DESC: Orders the results in descending order based on the count of orchestras conducted by each conductor.
+6. LIMIT 1: Limits the output to only the top result, which is the conductor who has conducted the most orchestras.
+
+Example with Context:
+- 'conductor' table columns: Conductor_ID, Name
+- 'orchestra' table columns: Orchestra_ID, Conductor_ID
+
+Based on the provided SQL statement and the schema, the query will join the 'conductor' and 'orchestra' tables on the 'Conductor_ID' column, group the results by conductor, count the number of orchestras conducted by each conductor, order the results in descending order of the count, and finally limit the output to show only the top conductor who has conducted the most orchestras.",0.8988371,0.9778761860760739,0.9474316
+dog_kennels,"SELECT professional_id ,  last_name ,  cell_number FROM Professionals WHERE state  =  'Indiana' UNION SELECT T1.professional_id ,  T1.last_name ,  T1.cell_number FROM Professionals AS T1 JOIN Treatments AS T2 ON T1.professional_id  =  T2.professional_id GROUP BY T1.professional_id HAVING count(*)  >  2","Which professionals live in the state of Indiana or have done treatment on more than 2 treatments? List his or her id, last name and cell phone.","Translation: Show the professional_id, last_name, and cell_number of professionals who are located in Indiana, as well as those who have performed more than 2 treatments.
+
+Explanation: 
+1. SELECT professional_id, last_name, cell_number: This part of the statement specifies the columns that we want to display in the result - professional_id, last_name, and cell_number.
+2. FROM Professionals: We are selecting data from the table named Professionals.
+3. WHERE state = 'Indiana': This is a condition that filters out only the professionals who are located in Indiana.
+4. UNION: This operator is used to combine the results of two SELECT statements into a single result set. In this case, it will combine the results of the first SELECT statement with the results of the second SELECT statement.
+5. SELECT T1.professional_id, T1.last_name, T1.cell_number: This is the second SELECT statement, which specifies the columns we want to display from the table Professionals, but this time using an alias T1.
+6. JOIN Treatments AS T2 ON T1.professional_id = T2.professional_id: This part of the statement joins the table Professionals (aliased as T1) with the table Treatments (aliased as T2) based on the professional_id column.
+7. GROUP BY T1.professional_id: Groups the result set by the professional_id column.
+8. HAVING count(*) > 2: This is a condition that filters out only the groups where the count of rows in each group is greater than 2, meaning that the professional has performed more than 2 treatments.","Translation: Show the professional_id, last_name, and cell_number of professionals who are located in Indiana, as well as those who have performed more than 2 treatments.","1. SELECT professional_id, last_name, cell_number: This part of the statement specifies the columns that we want to display in the result - professional_id, last_name, and cell_number.
+2. FROM Professionals: We are selecting data from the table named Professionals.
+3. WHERE state = 'Indiana': This is a condition that filters out only the professionals who are located in Indiana.
+4. UNION: This operator is used to combine the results of two SELECT statements into a single result set. In this case, it will combine the results of the first SELECT statement with the results of the second SELECT statement.
+5. SELECT T1.professional_id, T1.last_name, T1.cell_number: This is the second SELECT statement, which specifies the columns we want to display from the table Professionals, but this time using an alias T1.
+6. JOIN Treatments AS T2 ON T1.professional_id = T2.professional_id: This part of the statement joins the table Professionals (aliased as T1) with the table Treatments (aliased as T2) based on the professional_id column.
+7. GROUP BY T1.professional_id: Groups the result set by the professional_id column.
+8. HAVING count(*) > 2: This is a condition that filters out only the groups where the count of rows in each group is greater than 2, meaning that the professional has performed more than 2 treatments.",0.7289701,0.9241943960440161,0.84627044
+dog_kennels,SELECT T1.treatment_type_description FROM Treatment_types AS T1 JOIN Treatments AS T2 ON T1.treatment_type_code  =  T2.treatment_type_code GROUP BY T1.treatment_type_code ORDER BY sum(cost_of_treatment) ASC LIMIT 1,What is the description of the treatment type that costs the least money in total?,"Translation: Retrieve the description of the treatment type from the Treatment_types table where the treatment type code matches between Treatment_types and Treatments tables. Group the results by treatment type code, then order them in ascending order based on the sum of the cost of treatment, and limit the output to the first result.
+
+Explanation:
+1. SELECT T1.treatment_type_description: This part of the query specifies that we want to retrieve the treatment_type_description from the Treatment_types table, which is aliased as T1.
+
+2. FROM Treatment_types AS T1: This specifies the table from which we are retrieving the treatment type description, and aliases the table as T1 for easier reference in the query.
+
+3. JOIN Treatments AS T2 ON T1.treatment_type_code = T2.treatment_type_code: This is a JOIN statement that links the Treatment_types table with the Treatments table based on the treatment_type_code column, to ensure that we are only retrieving information that matches between the two tables.
+
+4. GROUP BY T1.treatment_type_code: This part of the query groups the results by the treatment type code from the Treatment_types table, ensuring that each unique treatment type is represented only once in the output.
+
+5. ORDER BY sum(cost_of_treatment) ASC: The results are then ordered in ascending order based on the sum of the cost_of_treatment column from the Treatments table. This means that the treatment types will be sorted from the cheapest total cost of treatment to the most expensive.
+
+6. LIMIT 1: Finally, the LIMIT 1 clause ensures that only the first result (the treatment type with the lowest total cost of treatment) is returned in the output.
+
+Example using the schema:
+- Treatment_types table: 
+  - Columns: treatment_type_code, treatment_type_description
+
+- Treatments table:
+  - Columns: treatment_type_code, cost_of_treatment
+
+If we have the following data in the Treatments table:
+| treatment_type_code | cost_of_treatment |
+|---------------------|-------------------|
+| 1                   | 100               |
+| 2                   | 150               |
+| 1                   | 120               |
+| 3                   | 80                |
+
+After executing the query, it will calculate the total cost of treatment for each treatment type:
+- Treatment type 1: 100 + 120 = 220
+- Treatment type 2: 150
+- Treatment type 3: 80
+
+It will then order the results in ascending order based on the total cost of treatment:
+1. Treatment type 3: 80
+2. Treatment type 2: 150
+3. Treatment type 1: 220
+
+Since we have specified LIMIT 1, the output will only show the treatment type with the lowest total cost, which in this case is treatment type 3 with a total cost of 80.","Translation: Retrieve the description of the treatment type from the Treatment_types table where the treatment type code matches between Treatment_types and Treatments tables. Group the results by treatment type code, then order them in ascending order based on the sum of the cost of treatment, and limit the output to the first result.","1. SELECT T1.treatment_type_description: This part of the query specifies that we want to retrieve the treatment_type_description from the Treatment_types table, which is aliased as T1.
+
+2. FROM Treatment_types AS T1: This specifies the table from which we are retrieving the treatment type description, and aliases the table as T1 for easier reference in the query.
+
+3. JOIN Treatments AS T2 ON T1.treatment_type_code = T2.treatment_type_code: This is a JOIN statement that links the Treatment_types table with the Treatments table based on the treatment_type_code column, to ensure that we are only retrieving information that matches between the two tables.
+
+4. GROUP BY T1.treatment_type_code: This part of the query groups the results by the treatment type code from the Treatment_types table, ensuring that each unique treatment type is represented only once in the output.
+
+5. ORDER BY sum(cost_of_treatment) ASC: The results are then ordered in ascending order based on the sum of the cost_of_treatment column from the Treatments table. This means that the treatment types will be sorted from the cheapest total cost of treatment to the most expensive.
+
+6. LIMIT 1: Finally, the LIMIT 1 clause ensures that only the first result (the treatment type with the lowest total cost of treatment) is returned in the output.
+
+Example using the schema:
+- Treatment_types table: 
+  - Columns: treatment_type_code, treatment_type_description
+
+- Treatments table:
+  - Columns: treatment_type_code, cost_of_treatment
+
+If we have the following data in the Treatments table:
+| treatment_type_code | cost_of_treatment |
+|---------------------|-------------------|
+| 1                   | 100               |
+| 2                   | 150               |
+| 1                   | 120               |
+| 3                   | 80                |
+
+After executing the query, it will calculate the total cost of treatment for each treatment type:
+- Treatment type 1: 100 + 120 = 220
+- Treatment type 2: 150
+- Treatment type 3: 80
+
+It will then order the results in ascending order based on the total cost of treatment:
+1. Treatment type 3: 80
+2. Treatment type 2: 150
+3. Treatment type 1: 220
+
+Since we have specified LIMIT 1, the output will only show the treatment type with the lowest total cost, which in this case is treatment type 3 with a total cost of 80.",0.442239,0.8307326510422612,0.67727774
+dog_kennels,"SELECT T1.owner_id ,  T1.zip_code FROM Owners AS T1 JOIN Dogs AS T2 ON T1.owner_id  =  T2.owner_id JOIN Treatments AS T3 ON T2.dog_id  =  T3.dog_id GROUP BY T1.owner_id ORDER BY sum(T3.cost_of_treatment) DESC LIMIT 1",Which owner has paid the largest amount of money in total for their dogs? Show the owner id and zip code.,"Translation: Show the owner_id and zip_code of the owner who has spent the most on treatments for their dog.
+
+Explanation: 
+1. SELECT T1.owner_id, T1.zip_code: This part of the statement selects the owner_id and zip_code from the Owners table, aliasing it as T1.
+2. FROM Owners AS T1: This specifies that we are selecting data from the Owners table and aliasing it as T1.
+3. JOIN Dogs AS T2 ON T1.owner_id = T2.owner_id: This joins the Owners table with the Dogs table on the owner_id column, linking the two tables together.
+4. JOIN Treatments AS T3 ON T2.dog_id = T3.dog_id: This joins the Dogs table with the Treatments table on the dog_id column, linking all three tables together.
+5. GROUP BY T1.owner_id: This groups the results by owner_id, so that we can calculate the total cost of treatments for each owner.
+6. ORDER BY sum(T3.cost_of_treatment) DESC: This orders the results by the sum of the cost_of_treatment column from the Treatments table in descending order, so that the owner who has spent the most on treatments will be at the top.
+7. LIMIT 1: This limits the output to only one result, which will be the owner who has spent the most on treatments for their dog.
+
+Example: 
+- If the Owners table has columns owner_id, name, zip_code and the Dogs table has columns dog_id, name, owner_id and the Treatments table has columns treatment_id, dog_id, cost_of_treatment, the SQL statement will join these tables together to find the owner who has spent the most on treatments for their dog.",Translation: Show the owner_id and zip_code of the owner who has spent the most on treatments for their dog.,"1. SELECT T1.owner_id, T1.zip_code: This part of the statement selects the owner_id and zip_code from the Owners table, aliasing it as T1.
+2. FROM Owners AS T1: This specifies that we are selecting data from the Owners table and aliasing it as T1.
+3. JOIN Dogs AS T2 ON T1.owner_id = T2.owner_id: This joins the Owners table with the Dogs table on the owner_id column, linking the two tables together.
+4. JOIN Treatments AS T3 ON T2.dog_id = T3.dog_id: This joins the Dogs table with the Treatments table on the dog_id column, linking all three tables together.
+5. GROUP BY T1.owner_id: This groups the results by owner_id, so that we can calculate the total cost of treatments for each owner.
+6. ORDER BY sum(T3.cost_of_treatment) DESC: This orders the results by the sum of the cost_of_treatment column from the Treatments table in descending order, so that the owner who has spent the most on treatments will be at the top.
+7. LIMIT 1: This limits the output to only one result, which will be the owner who has spent the most on treatments for their dog.
+
+Example: 
+- If the Owners table has columns owner_id, name, zip_code and the Dogs table has columns dog_id, name, owner_id and the Treatments table has columns treatment_id, dog_id, cost_of_treatment, the SQL statement will join these tables together to find the owner who has spent the most on treatments for their dog.",0.66224784,0.9237237833295472,0.84798104
+dog_kennels,"SELECT T1.name ,  T2.date_of_treatment FROM Dogs AS T1 JOIN Treatments AS T2 ON T1.dog_id  =  T2.dog_id WHERE T1.breed_code  =  ( SELECT breed_code FROM Dogs GROUP BY breed_code ORDER BY count(*) ASC LIMIT 1 )",List the names of the dogs of the rarest breed and the treatment dates of them.,"Translation: Show the name of the dog and the date of treatment for dogs that belong to the breed with the least number of occurrences.
+
+Explanation:
+1. Start by looking at the Dogs table and Treatments table. The Dogs table has columns such as dog_id, name, and breed_code. The Treatments table has columns like dog_id and date_of_treatment.
+
+2. The SQL statement begins with the SELECT keyword, indicating that we want to retrieve specific columns from the tables.
+
+3. T1 and T2 are aliases for the Dogs and Treatments tables, respectively.
+
+4. The JOIN keyword is used to combine rows from both tables based on a related column, in this case, dog_id.
+
+5. The ON keyword specifies the condition for the join, where T1.dog_id must be equal to T2.dog_id.
+
+6. The WHERE clause filters the results based on a condition. Here, we are filtering for dogs that belong to the breed with the least number of occurrences.
+
+7. The subquery (SELECT breed_code FROM Dogs GROUP BY breed_code ORDER BY count(*) ASC LIMIT 1) is used to find the breed_code with the least count of occurrences in the Dogs table.
+
+8. The outer query then retrieves the name of the dog and the date of treatment for dogs that belong to the breed with the least number of occurrences.
+
+Example:
+- If the Dogs table contains the following data:
+| dog_id | name  | breed_code |
+|--------|-------|------------|
+| 1      | Max   | A          |
+| 2      | Bella | B          |
+| 3      | Buddy | A          |
+
+- If the Treatments table contains the following data:
+| dog_id | date_of_treatment |
+|--------|-------------------|
+| 1      | 2022-01-15        |
+| 2      | 2022-02-05        |
+| 3      | 2022-03-20        |
+
+- The SQL statement would return:
+| name  | date_of_treatment |
+|-------|-------------------|
+| Max   | 2022-01-15        |
+| Buddy | 2022-03-20        |",Translation: Show the name of the dog and the date of treatment for dogs that belong to the breed with the least number of occurrences.,"1. Start by looking at the Dogs table and Treatments table. The Dogs table has columns such as dog_id, name, and breed_code. The Treatments table has columns like dog_id and date_of_treatment.
+
+2. The SQL statement begins with the SELECT keyword, indicating that we want to retrieve specific columns from the tables.
+
+3. T1 and T2 are aliases for the Dogs and Treatments tables, respectively.
+
+4. The JOIN keyword is used to combine rows from both tables based on a related column, in this case, dog_id.
+
+5. The ON keyword specifies the condition for the join, where T1.dog_id must be equal to T2.dog_id.
+
+6. The WHERE clause filters the results based on a condition. Here, we are filtering for dogs that belong to the breed with the least number of occurrences.
+
+7. The subquery (SELECT breed_code FROM Dogs GROUP BY breed_code ORDER BY count(*) ASC LIMIT 1) is used to find the breed_code with the least count of occurrences in the Dogs table.
+
+8. The outer query then retrieves the name of the dog and the date of treatment for dogs that belong to the breed with the least number of occurrences.
+
+Example:
+- If the Dogs table contains the following data:
+| dog_id | name  | breed_code |
+|--------|-------|------------|
+| 1      | Max   | A          |
+| 2      | Bella | B          |
+| 3      | Buddy | A          |
+
+- If the Treatments table contains the following data:
+| dog_id | date_of_treatment |
+|--------|-------------------|
+| 1      | 2022-01-15        |
+| 2      | 2022-02-05        |
+| 3      | 2022-03-20        |
+
+- The SQL statement would return:
+| name  | date_of_treatment |
+|-------|-------------------|
+| Max   | 2022-01-15        |
+| Buddy | 2022-03-20        |",0.6773082,0.9109731313698722,0.8178527
+singer,"SELECT T1.Name ,  sum(T2.Sales) FROM singer AS T1 JOIN song AS T2 ON T1.Singer_ID  =  T2.Singer_ID GROUP BY T1.Name",Show the names of singers and the total sales of their songs.,"Translation: Show the names of the singers and the total sales they have made for their songs.
+
+Explanation: This SQL statement is selecting the Name column from the singer table (aliased as T1) and the sum of the Sales column from the song table (aliased as T2). It is joining the two tables on the Singer_ID column, where the Singer_ID in the singer table matches the Singer_ID in the song table. The result is then grouped by the Name column from the singer table. This query will provide a list of singer names along with the total sales they have made for their songs.
+
+Example:
+- If the singer table has columns (Singer_ID, Name) and the song table has columns (Song_ID, Singer_ID, Sales), the query will join the two tables on Singer_ID and calculate the sum of Sales for each singer, displaying their Name and total sales.
+
+- If the singer table has data:
+| Singer_ID | Name   |
+|-----------|--------|
+| 1         | Adele  |
+| 2         | Beyonce|
+
+- And the song table has data:
+| Song_ID | Singer_ID | Sales |
+|---------|-----------|-------|
+| 101     | 1         | 500   |
+| 102     | 1         | 700   |
+| 103     | 2         | 600   |
+
+- The query will output:
+| Name   | sum(T2.Sales) |
+|--------|---------------|
+| Adele  | 1200          |
+| Beyonce| 600           |",Translation: Show the names of the singers and the total sales they have made for their songs.,"This SQL statement is selecting the Name column from the singer table (aliased as T1) and the sum of the Sales column from the song table (aliased as T2). It is joining the two tables on the Singer_ID column, where the Singer_ID in the singer table matches the Singer_ID in the song table. The result is then grouped by the Name column from the singer table. This query will provide a list of singer names along with the total sales they have made for their songs.
+
+Example:
+- If the singer table has columns (Singer_ID, Name) and the song table has columns (Song_ID, Singer_ID, Sales), the query will join the two tables on Singer_ID and calculate the sum of Sales for each singer, displaying their Name and total sales.
+
+- If the singer table has data:
+| Singer_ID | Name   |
+|-----------|--------|
+| 1         | Adele  |
+| 2         | Beyonce|
+
+- And the song table has data:
+| Song_ID | Singer_ID | Sales |
+|---------|-----------|-------|
+| 101     | 1         | 500   |
+| 102     | 1         | 700   |
+| 103     | 2         | 600   |
+
+- The query will output:
+| Name   | sum(T2.Sales) |
+|--------|---------------|
+| Adele  | 1200          |
+| Beyonce| 600           |",0.82381606,0.9709080830350466,0.95993054
+real_estate_properties,"SELECT property_name FROM Properties WHERE property_type_code  =  ""House"" UNION SELECT property_name FROM Properties WHERE property_type_code  =  ""Apartment"" AND room_count  >  1",What are the names of properties that are either houses or apartments with more than 1 room?,"Translation: Show the names of properties that are classified as ""House"" and also show the names of properties that are classified as ""Apartment"" with more than 1 room.
+
+Explanation: This SQL statement is using the UNION operator to combine the results of two SELECT queries. The first SELECT query retrieves the property names from the Properties table where the property_type_code is ""House"". The second SELECT query retrieves the property names from the Properties table where the property_type_code is ""Apartment"" and the room_count is greater than 1.
+
+Example:
+- Property table columns: property_name, property_type_code, room_count
+- Data in Properties table:
+| property_name | property_type_code | room_count |
+|---------------|--------------------|------------|
+| House 1       | House              | 3          |
+| House 2       | House              | 2          |
+| Apartment 1   | Apartment          | 1          |
+| Apartment 2   | Apartment          | 2          |
+| Apartment 3   | Apartment          | 3          |
+
+Result of the SQL query:
+| property_name |
+|---------------|
+| House 1       |
+| House 2       |
+| Apartment 2   |
+| Apartment 3   |
+
+Explanation of the result:
+- The properties ""House 1"" and ""House 2"" are classified as ""House"".
+- The properties ""Apartment 2"" and ""Apartment 3"" are classified as ""Apartment"" and have more than 1 room.","Translation: Show the names of properties that are classified as ""House"" and also show the names of properties that are classified as ""Apartment"" with more than 1 room.","This SQL statement is using the UNION operator to combine the results of two SELECT queries. The first SELECT query retrieves the property names from the Properties table where the property_type_code is ""House"". The second SELECT query retrieves the property names from the Properties table where the property_type_code is ""Apartment"" and the room_count is greater than 1.
+
+Example:
+- Property table columns: property_name, property_type_code, room_count
+- Data in Properties table:
+| property_name | property_type_code | room_count |
+|---------------|--------------------|------------|
+| House 1       | House              | 3          |
+| House 2       | House              | 2          |
+| Apartment 1   | Apartment          | 1          |
+| Apartment 2   | Apartment          | 2          |
+| Apartment 3   | Apartment          | 3          |
+
+Result of the SQL query:
+| property_name |
+|---------------|
+| House 1       |
+| House 2       |
+| Apartment 2   |
+| Apartment 3   |
+
+Explanation of the result:
+- The properties ""House 1"" and ""House 2"" are classified as ""House"".
+- The properties ""Apartment 2"" and ""Apartment 3"" are classified as ""Apartment"" and have more than 1 room.",0.6705821,0.9098630662736966,0.8319921
