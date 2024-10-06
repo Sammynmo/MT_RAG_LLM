@@ -1,0 +1,991 @@
+DB_ID,Query,Question,Output,Translation,Explanation
+concert_singer,"SELECT T2.name ,  T2.capacity FROM concert AS T1 JOIN stadium AS T2 ON T1.stadium_id  =  T2.stadium_id WHERE T1.year  >=  2014 GROUP BY T2.stadium_id ORDER BY count(*) DESC LIMIT 1",Show the stadium name and capacity with most number of concerts in year 2014 or after.,"**Translation:**
+Select the name and capacity of the stadium that has hosted the most concerts since 2014.
+
+**Explanation:**
+1. **SELECT T2.name, T2.capacity**: This part specifies that we want to retrieve the name and capacity of the stadium (from the stadium table, referred to as T2).
+
+2. **FROM concert AS T1**: We are starting our query from the concert table, which is referred to as T1.
+
+3. **JOIN stadium AS T2 ON T1.stadium_id = T2.stadium_id**: We are joining the concert table (T1) with the stadium table (T2) based on the stadium_id. This means we are linking concerts to the stadiums where they were held.
+
+4. **WHERE T1.year >= 2014**: This condition filters the results to only include concerts that took place in the year 2014 or later.
+
+5. **GROUP BY T2.stadium_id**: This groups the results by each stadium's ID, allowing us to count the number of concerts held at each stadium.
+
+6. **ORDER BY count(*) DESC**: This orders the grouped results by the number of concerts in descending order, so the stadium with the most concerts appears first.
+
+7. **LIMIT 1**: Finally, this limits the results to just one entry, which will be the stadium that has hosted the most concerts since 2014.","**Translation:**
+Select the name and capacity of the stadium that has hosted the most concerts since 2014.
+
+**",":**
+1. **SELECT T2.name, T2.capacity**: This part specifies that we want to retrieve the name and capacity of the stadium (from the stadium table, referred to as T2).
+
+2. **FROM concert AS T1**: We are starting our query from the concert table, which is referred to as T1.
+
+3. **JOIN stadium AS T2 ON T1.stadium_id = T2.stadium_id**: We are joining the concert table (T1) with the stadium table (T2) based on the stadium_id. This means we are linking concerts to the stadiums where they were held.
+
+4. **WHERE T1.year >= 2014**: This condition filters the results to only include concerts that took place in the year 2014 or later.
+
+5. **GROUP BY T2.stadium_id**: This groups the results by each stadium's ID, allowing us to count the number of concerts held at each stadium.
+
+6. **ORDER BY count(*) DESC**: This orders the grouped results by the number of concerts in descending order, so the stadium with the most concerts appears first.
+
+7. **LIMIT 1**: Finally, this limits the results to just one entry, which will be the stadium that has hosted the most concerts since 2014."
+pets_1,"SELECT T1.fname ,  T1.age FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'dog' AND T1.stuid NOT IN (SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid  =  T2.stuid JOIN pets AS T3 ON T3.petid  =  T2.petid WHERE T3.pettype  =  'cat')",Find the first name and age of students who have a dog but do not have a cat as a pet.,"**Translation:**
+Select the first name and age of students who own a dog but do not own a cat.
+
+**Explanation:**
+1. **SELECT T1.fname, T1.age**: This part specifies that we want to retrieve the first name (`fname`) and age (`age`) of the students.
+  
+2. **FROM student AS T1**: We are selecting this information from the `student` table, which we are referring to as `T1`.
+
+3. **JOIN has_pet AS T2 ON T1.stuid = T2.stuid**: We are joining the `has_pet` table (aliased as `T2`) to the `student` table. This join is based on the student ID (`stuid`), meaning we are linking students to their pets.
+
+4. **JOIN pets AS T3 ON T3.petid = T2.petid**: We are further joining the `pets` table (aliased as `T3`) to get details about the pets. This join is based on the pet ID (`petid`), linking the pet information to the students.
+
+5. **WHERE T3.pettype = 'dog'**: This condition filters the results to include only those students who have a pet of type 'dog'.
+
+6. **AND T1.stuid NOT IN (SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid = T2.stuid JOIN pets AS T3 ON T3.petid = T2.petid WHERE T3.pettype = 'cat')**: This subquery checks for students who own a cat. The main query will exclude any student IDs that appear in this subquery, ensuring that we only get students who do not have a cat.
+
+In summary, the query retrieves the names and ages of students who have dogs but do not have cats.","**Translation:**
+Select the first name and age of students who own a dog but do not own a cat.
+
+**",":**
+1. **SELECT T1.fname, T1.age**: This part specifies that we want to retrieve the first name (`fname`) and age (`age`) of the students.
+  
+2. **FROM student AS T1**: We are selecting this information from the `student` table, which we are referring to as `T1`.
+
+3. **JOIN has_pet AS T2 ON T1.stuid = T2.stuid**: We are joining the `has_pet` table (aliased as `T2`) to the `student` table. This join is based on the student ID (`stuid`), meaning we are linking students to their pets.
+
+4. **JOIN pets AS T3 ON T3.petid = T2.petid**: We are further joining the `pets` table (aliased as `T3`) to get details about the pets. This join is based on the pet ID (`petid`), linking the pet information to the students.
+
+5. **WHERE T3.pettype = 'dog'**: This condition filters the results to include only those students who have a pet of type 'dog'.
+
+6. **AND T1.stuid NOT IN (SELECT T1.stuid FROM student AS T1 JOIN has_pet AS T2 ON T1.stuid = T2.stuid JOIN pets AS T3 ON T3.petid = T2.petid WHERE T3.pettype = 'cat')**: This subquery checks for students who own a cat. The main query will exclude any student IDs that appear in this subquery, ensuring that we only get students who do not have a cat.
+
+In summary, the query retrieves the names and ages of students who have dogs but do not have cats."
+car_1,SELECT T1.CountryName FROM COUNTRIES AS T1 JOIN CONTINENTS AS T2 ON T1.Continent  =  T2.ContId JOIN CAR_MAKERS AS T3 ON T1.CountryId  =  T3.Country WHERE T2.Continent  =  'europe' GROUP BY T1.CountryName HAVING count(*)  >=  3;,Which countries in europe have at least 3 car manufacturers?,"**Translation:**  
+Select the names of countries from Europe that have at least 3 car manufacturers.
+
+**Explanation of the SQL Query:**
+
+1. **SELECT T1.CountryName**: This part specifies that we want to retrieve the names of countries (CountryName) from the COUNTRIES table, which is aliased as T1.
+
+2. **FROM COUNTRIES AS T1**: We are starting our query from the COUNTRIES table, giving it the alias T1 for easier reference.
+
+3. **JOIN CONTINENTS AS T2 ON T1.Continent = T2.ContId**: We are joining the COUNTRIES table with the CONTINENTS table (aliased as T2) based on the continent ID. This allows us to filter countries by their continent.
+
+4. **JOIN CAR_MAKERS AS T3 ON T1.CountryId = T3.Country**: We are further joining the CAR_MAKERS table (aliased as T3) to include only those countries that have car manufacturers. This is done by matching the CountryId from the COUNTRIES table with the Country field in the CAR_MAKERS table.
+
+5. **WHERE T2.Continent = 'europe'**: This condition filters the results to include only countries that are in the continent of Europe.
+
+6. **GROUP BY T1.CountryName**: We group the results by country name to prepare for counting the number of car manufacturers per country.
+
+7. **HAVING count(*) >= 3**: Finally, we apply a condition to only include countries that have 3 or more car manufacturers.
+
+In summary, this query retrieves the names of European countries that have at least three car manufacturers.","**Translation:**  
+Select the names of countries from Europe that have at least 3 car manufacturers.
+
+**","of the SQL Query:**
+
+1. **SELECT T1.CountryName**: This part specifies that we want to retrieve the names of countries (CountryName) from the COUNTRIES table, which is aliased as T1.
+
+2. **FROM COUNTRIES AS T1**: We are starting our query from the COUNTRIES table, giving it the alias T1 for easier reference.
+
+3. **JOIN CONTINENTS AS T2 ON T1.Continent = T2.ContId**: We are joining the COUNTRIES table with the CONTINENTS table (aliased as T2) based on the continent ID. This allows us to filter countries by their continent.
+
+4. **JOIN CAR_MAKERS AS T3 ON T1.CountryId = T3.Country**: We are further joining the CAR_MAKERS table (aliased as T3) to include only those countries that have car manufacturers. This is done by matching the CountryId from the COUNTRIES table with the Country field in the CAR_MAKERS table.
+
+5. **WHERE T2.Continent = 'europe'**: This condition filters the results to include only countries that are in the continent of Europe.
+
+6. **GROUP BY T1.CountryName**: We group the results by country name to prepare for counting the number of car manufacturers per country.
+
+7. **HAVING count(*) >= 3**: Finally, we apply a condition to only include countries that have 3 or more car manufacturers.
+
+In summary, this query retrieves the names of European countries that have at least three car manufacturers."
+car_1,"SELECT T2.MakeId ,  T2.Make FROM CARS_DATA AS T1 JOIN CAR_NAMES AS T2 ON T1.Id  =  T2.MakeId WHERE T1.Horsepower  >  (SELECT min(Horsepower) FROM CARS_DATA) AND T1.Cylinders  <=  3;","Among the cars with more than lowest horsepower, which ones do not have more than 3 cylinders? List the car makeid and make name.","**Translation:**
+Retrieve the MakeId and Make of cars that have more horsepower than the minimum horsepower found in the CARS_DATA table and have 3 or fewer cylinders.
+
+**Explanation:**
+1. **SELECT T2.MakeId, T2.Make**: This part specifies that we want to retrieve the MakeId and Make (the name of the car) from the CAR_NAMES table (aliased as T2).
+
+2. **FROM CARS_DATA AS T1**: We are starting our query from the CARS_DATA table, which is aliased as T1.
+
+3. **JOIN CAR_NAMES AS T2 ON T1.Id = T2.MakeId**: We are joining the CARS_DATA table (T1) with the CAR_NAMES table (T2) based on the condition that the Id in CARS_DATA matches the MakeId in CAR_NAMES. This allows us to link each car's data with its corresponding name.
+
+4. **WHERE T1.Horsepower > (SELECT min(Horsepower) FROM CARS_DATA)**: This condition filters the results to include only those cars that have horsepower greater than the minimum horsepower found in the CARS_DATA table. The subquery `(SELECT min(Horsepower) FROM CARS_DATA)` calculates the minimum horsepower.
+
+5. **AND T1.Cylinders <= 3**: This additional condition further filters the results to include only cars that have 3 or fewer cylinders.
+
+In summary, the query finds and lists the MakeId and Make of cars that are more powerful than the weakest car in the dataset and have a maximum of 3 cylinders.","**Translation:**
+Retrieve the MakeId and Make of cars that have more horsepower than the minimum horsepower found in the CARS_DATA table and have 3 or fewer cylinders.
+
+**",":**
+1. **SELECT T2.MakeId, T2.Make**: This part specifies that we want to retrieve the MakeId and Make (the name of the car) from the CAR_NAMES table (aliased as T2).
+
+2. **FROM CARS_DATA AS T1**: We are starting our query from the CARS_DATA table, which is aliased as T1.
+
+3. **JOIN CAR_NAMES AS T2 ON T1.Id = T2.MakeId**: We are joining the CARS_DATA table (T1) with the CAR_NAMES table (T2) based on the condition that the Id in CARS_DATA matches the MakeId in CAR_NAMES. This allows us to link each car's data with its corresponding name.
+
+4. **WHERE T1.Horsepower > (SELECT min(Horsepower) FROM CARS_DATA)**: This condition filters the results to include only those cars that have horsepower greater than the minimum horsepower found in the CARS_DATA table. The subquery `(SELECT min(Horsepower) FROM CARS_DATA)` calculates the minimum horsepower.
+
+5. **AND T1.Cylinders <= 3**: This additional condition further filters the results to include only cars that have 3 or fewer cylinders.
+
+In summary, the query finds and lists the MakeId and Make of cars that are more powerful than the weakest car in the dataset and have a maximum of 3 cylinders."
+car_1,"select t1.id ,  t1.maker from car_makers as t1 join model_list as t2 on t1.id  =  t2.maker group by t1.id having count(*)  >=  2 intersect select t1.id ,  t1.maker from car_makers as t1 join model_list as t2 on t1.id  =  t2.maker join car_names as t3 on t2.model  =  t3.model group by t1.id having count(*)  >  3;",Which are the car makers which produce at least 2 models and more than 3 car makers ? List the id and the maker .,"**Translation:**
+Select the ID and maker of car manufacturers that have at least 2 models listed, and also select those that have more than 3 specific car names associated with those models. Show only the manufacturers that meet both criteria.
+
+**Explanation:**
+1. **First Part of the Query:**
+   - `SELECT t1.id, t1.maker FROM car_makers AS t1 JOIN model_list AS t2 ON t1.id = t2.maker`
+     - This part selects the ID and maker from the `car_makers` table (aliased as `t1`) and joins it with the `model_list` table (aliased as `t2`) where the maker ID matches.
+   
+   - `GROUP BY t1.id HAVING COUNT(*) >= 2`
+     - It groups the results by the maker ID and filters to include only those makers that have 2 or more models listed.
+
+2. **Second Part of the Query:**
+   - `SELECT t1.id, t1.maker FROM car_makers AS t1 JOIN model_list AS t2 ON t1.id = t2.maker JOIN car_names AS t3 ON t2.model = t3.model`
+     - This part also selects the ID and maker from the `car_makers` table, but it additionally joins the `car_names` table (aliased as `t3`) to include only those models that have specific car names associated with them.
+
+   - `GROUP BY t1.id HAVING COUNT(*) > 3`
+     - It groups the results by the maker ID and filters to include only those makers that have more than 3 specific car names associated with their models.
+
+3. **INTERSECT:**
+   - The `INTERSECT` operator combines the results of the two parts, returning only those car makers that satisfy both conditions: having at least 2 models and more than 3 specific car names.
+
+In summary, the query identifies car manufacturers that have a significant presence in terms of both model variety and specific car names.","**Translation:**
+Select the ID and maker of car manufacturers that have at least 2 models listed, and also select those that have more than 3 specific car names associated with those models. Show only the manufacturers that meet both criteria.
+
+**",":**
+1. **First Part of the Query:**
+   - `SELECT t1.id, t1.maker FROM car_makers AS t1 JOIN model_list AS t2 ON t1.id = t2.maker`
+     - This part selects the ID and maker from the `car_makers` table (aliased as `t1`) and joins it with the `model_list` table (aliased as `t2`) where the maker ID matches.
+   
+   - `GROUP BY t1.id HAVING COUNT(*) >= 2`
+     - It groups the results by the maker ID and filters to include only those makers that have 2 or more models listed.
+
+2. **Second Part of the Query:**
+   - `SELECT t1.id, t1.maker FROM car_makers AS t1 JOIN model_list AS t2 ON t1.id = t2.maker JOIN car_names AS t3 ON t2.model = t3.model`
+     - This part also selects the ID and maker from the `car_makers` table, but it additionally joins the `car_names` table (aliased as `t3`) to include only those models that have specific car names associated with them.
+
+   - `GROUP BY t1.id HAVING COUNT(*) > 3`
+     - It groups the results by the maker ID and filters to include only those makers that have more than 3 specific car names associated with their models.
+
+3. **INTERSECT:**
+   - The `INTERSECT` operator combines the results of the two parts, returning only those car makers that satisfy both conditions: having at least 2 models and more than 3 specific car names.
+
+In summary, the query identifies car manufacturers that have a significant presence in terms of both model variety and specific car names."
+car_1,"SELECT T1.Id ,  T1.Maker FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker GROUP BY T1.Id HAVING count(*)  >=  2 INTERSECT SELECT T1.Id ,  T1.Maker FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id  =  T2.Maker JOIN CAR_NAMES AS T3 ON T2.model  =  T3.model GROUP BY T1.Id HAVING count(*)  >  3;",What are the ids and makers of all car makers that produce at least 2 models and make more than 3 cars?,"**Translation:**
+Select the ID and Maker of car manufacturers that have at least 2 models listed, and also select those that have more than 3 models associated with specific car names. Show only the manufacturers that meet both criteria.
+
+**Explanation:**
+1. **SELECT T1.Id, T1.Maker**: This part specifies that we want to retrieve the ID and Maker name from the CAR_MAKERS table (aliased as T1).
+
+2. **FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id = T2.Maker**: Here, we are joining the CAR_MAKERS table with the MODEL_LIST table (aliased as T2) based on the condition that the ID in CAR_MAKERS matches the Maker in MODEL_LIST. This allows us to link car manufacturers to their models.
+
+3. **GROUP BY T1.Id**: This groups the results by the ID of the car manufacturers, so we can perform aggregate functions on each group.
+
+4. **HAVING count(*) >= 2**: This condition filters the grouped results to include only those manufacturers that have 2 or more models listed in the MODEL_LIST.
+
+5. **INTERSECT**: This keyword is used to find the common results between two queries.
+
+6. **SELECT T1.Id, T1.Maker FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id = T2.Maker JOIN CAR_NAMES AS T3 ON T2.model = T3.model**: This second query also selects the ID and Maker from CAR_MAKERS, but it adds another join with the CAR_NAMES table (aliased as T3) to link models to specific car names.
+
+7. **GROUP BY T1.Id HAVING count(*) > 3**: This groups the results again by the ID of the car manufacturers and filters to include only those that have more than 3 models associated with specific car names.
+
+The final result will be the IDs and Makers of car manufacturers that have at least 2 models listed and also have more than 3 models linked to specific car names.","**Translation:**
+Select the ID and Maker of car manufacturers that have at least 2 models listed, and also select those that have more than 3 models associated with specific car names. Show only the manufacturers that meet both criteria.
+
+**",":**
+1. **SELECT T1.Id, T1.Maker**: This part specifies that we want to retrieve the ID and Maker name from the CAR_MAKERS table (aliased as T1).
+
+2. **FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id = T2.Maker**: Here, we are joining the CAR_MAKERS table with the MODEL_LIST table (aliased as T2) based on the condition that the ID in CAR_MAKERS matches the Maker in MODEL_LIST. This allows us to link car manufacturers to their models.
+
+3. **GROUP BY T1.Id**: This groups the results by the ID of the car manufacturers, so we can perform aggregate functions on each group.
+
+4. **HAVING count(*) >= 2**: This condition filters the grouped results to include only those manufacturers that have 2 or more models listed in the MODEL_LIST.
+
+5. **INTERSECT**: This keyword is used to find the common results between two queries.
+
+6. **SELECT T1.Id, T1.Maker FROM CAR_MAKERS AS T1 JOIN MODEL_LIST AS T2 ON T1.Id = T2.Maker JOIN CAR_NAMES AS T3 ON T2.model = T3.model**: This second query also selects the ID and Maker from CAR_MAKERS, but it adds another join with the CAR_NAMES table (aliased as T3) to link models to specific car names.
+
+7. **GROUP BY T1.Id HAVING count(*) > 3**: This groups the results again by the ID of the car manufacturers and filters to include only those that have more than 3 models associated with specific car names.
+
+The final result will be the IDs and Makers of car manufacturers that have at least 2 models listed and also have more than 3 models linked to specific car names."
+car_1,"SELECT T1.countryId ,  T1.CountryName FROM Countries AS T1 JOIN CAR_MAKERS AS T2 ON T1.CountryId  =  T2.Country GROUP BY T1.countryId HAVING count(*)  >  3 UNION SELECT T1.countryId ,  T1.CountryName FROM Countries AS T1 JOIN CAR_MAKERS AS T2 ON T1.CountryId  =  T2.Country JOIN MODEL_LIST AS T3 ON T2.Id  =  T3.Maker WHERE T3.Model  =  'fiat';",What are the id and names of the countries which have more than 3 car makers or produce the 'fiat' model?,"**Translation:**
+List the country IDs and names of countries that have more than 3 car makers, or countries that have car makers that produce the 'fiat' model.
+
+**Explanation:**
+1. **SELECT T1.countryId, T1.CountryName**: This part specifies that we want to retrieve the country ID and country name from the Countries table (aliased as T1).
+
+2. **FROM Countries AS T1 JOIN CAR_MAKERS AS T2 ON T1.CountryId = T2.Country**: Here, we are joining the Countries table (T1) with the CAR_MAKERS table (T2) based on the country ID. This means we are linking each country to its respective car makers.
+
+3. **GROUP BY T1.countryId**: This groups the results by country ID, allowing us to perform aggregate functions on each group.
+
+4. **HAVING count(*) > 3**: This condition filters the grouped results to only include countries that have more than 3 associated car makers.
+
+5. **UNION**: This combines the results of the first query with the results of the second query.
+
+6. **SELECT T1.countryId, T1.CountryName FROM Countries AS T1 JOIN CAR_MAKERS AS T2 ON T1.CountryId = T2.Country JOIN MODEL_LIST AS T3 ON T2.Id = T3.Maker WHERE T3.Model = 'fiat'**: This second part retrieves country IDs and names for countries that have car makers producing the 'fiat' model. It joins the Countries table (T1) with the CAR_MAKERS table (T2) and the MODEL_LIST table (T3) to filter for the specific model.
+
+In summary, the query retrieves countries with either more than 3 car makers or those that produce 'fiat' cars.","**Translation:**
+List the country IDs and names of countries that have more than 3 car makers, or countries that have car makers that produce the 'fiat' model.
+
+**",":**
+1. **SELECT T1.countryId, T1.CountryName**: This part specifies that we want to retrieve the country ID and country name from the Countries table (aliased as T1).
+
+2. **FROM Countries AS T1 JOIN CAR_MAKERS AS T2 ON T1.CountryId = T2.Country**: Here, we are joining the Countries table (T1) with the CAR_MAKERS table (T2) based on the country ID. This means we are linking each country to its respective car makers.
+
+3. **GROUP BY T1.countryId**: This groups the results by country ID, allowing us to perform aggregate functions on each group.
+
+4. **HAVING count(*) > 3**: This condition filters the grouped results to only include countries that have more than 3 associated car makers.
+
+5. **UNION**: This combines the results of the first query with the results of the second query.
+
+6. **SELECT T1.countryId, T1.CountryName FROM Countries AS T1 JOIN CAR_MAKERS AS T2 ON T1.CountryId = T2.Country JOIN MODEL_LIST AS T3 ON T2.Id = T3.Maker WHERE T3.Model = 'fiat'**: This second part retrieves country IDs and names for countries that have car makers producing the 'fiat' model. It joins the Countries table (T1) with the CAR_MAKERS table (T2) and the MODEL_LIST table (T3) to filter for the specific model.
+
+In summary, the query retrieves countries with either more than 3 car makers or those that produce 'fiat' cars."
+flight_2,"SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline WHERE T2.SourceAirport  =  ""CVO"" EXCEPT SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid  =  T2.Airline WHERE T2.SourceAirport  =  ""APG""",Find all airlines that have flights from airport 'CVO' but not from 'APG'.,"**Translation:**  
+Select the names of airlines that operate flights from the ""CVO"" airport but do not operate any flights from the ""APG"" airport.
+
+**Explanation:**  
+1. **SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid = T2.Airline WHERE T2.SourceAirport = ""CVO"":**  
+   - This part of the query retrieves the names of airlines (T1.Airline) from the AIRLINES table (aliased as T1) that have flights (from the FLIGHTS table, aliased as T2) departing from the ""CVO"" airport. The JOIN operation links the two tables based on the unique identifier (uid) of the airline.
+
+2. **EXCEPT:**  
+   - The EXCEPT operator is used to exclude results from the first query based on the results of the second query.
+
+3. **SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid = T2.Airline WHERE T2.SourceAirport = ""APG"":**  
+   - This part retrieves the names of airlines that operate flights from the ""APG"" airport, using the same JOIN method as before.
+
+4. **Final Result:**  
+   - The final output will be the names of airlines that have flights from ""CVO"" but do not have any flights from ""APG"".","**Translation:**  
+Select the names of airlines that operate flights from the ""CVO"" airport but do not operate any flights from the ""APG"" airport.
+
+**",":**  
+1. **SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid = T2.Airline WHERE T2.SourceAirport = ""CVO"":**  
+   - This part of the query retrieves the names of airlines (T1.Airline) from the AIRLINES table (aliased as T1) that have flights (from the FLIGHTS table, aliased as T2) departing from the ""CVO"" airport. The JOIN operation links the two tables based on the unique identifier (uid) of the airline.
+
+2. **EXCEPT:**  
+   - The EXCEPT operator is used to exclude results from the first query based on the results of the second query.
+
+3. **SELECT T1.Airline FROM AIRLINES AS T1 JOIN FLIGHTS AS T2 ON T1.uid = T2.Airline WHERE T2.SourceAirport = ""APG"":**  
+   - This part retrieves the names of airlines that operate flights from the ""APG"" airport, using the same JOIN method as before.
+
+4. **Final Result:**  
+   - The final output will be the names of airlines that have flights from ""CVO"" but do not have any flights from ""APG""."
+flight_2,SELECT AirportName FROM Airports WHERE AirportCode NOT IN (SELECT SourceAirport FROM Flights UNION SELECT DestAirport FROM Flights),Find the name of airports which do not have any flight in and out.,"**Translation:**  
+Retrieve the names of airports that are not used as either departure or arrival points in any flights.
+
+**Explanation of the SQL Query:**
+
+1. **SELECT AirportName FROM Airports:**  
+   This part of the query is asking for the names of airports from the ""Airports"" table.
+
+2. **WHERE AirportCode NOT IN:**  
+   This condition filters the results to include only those airports whose codes are not found in a specific list.
+
+3. **(SELECT SourceAirport FROM Flights UNION SELECT DestAirport FROM Flights):**  
+   This subquery combines two lists:
+   - The first list is all the source airports (where flights depart from).
+   - The second list is all the destination airports (where flights arrive at).
+   The `UNION` operator ensures that any duplicate airport codes are only listed once.
+
+Overall, the query identifies airports that do not have any flights either departing from or arriving at them.","**Translation:**  
+Retrieve the names of airports that are not used as either departure or arrival points in any flights.
+
+**","of the SQL Query:**
+
+1. **SELECT AirportName FROM Airports:**  
+   This part of the query is asking for the names of airports from the ""Airports"" table.
+
+2. **WHERE AirportCode NOT IN:**  
+   This condition filters the results to include only those airports whose codes are not found in a specific list.
+
+3. **(SELECT SourceAirport FROM Flights UNION SELECT DestAirport FROM Flights):**  
+   This subquery combines two lists:
+   - The first list is all the source airports (where flights depart from).
+   - The second list is all the destination airports (where flights arrive at).
+   The `UNION` operator ensures that any duplicate airport codes are only listed once.
+
+Overall, the query identifies airports that do not have any flights either departing from or arriving at them."
+employee_hire_evaluation,SELECT name FROM shop WHERE number_products  >  (SELECT avg(number_products) FROM shop),Find the names of stores whose number products is more than the average number of products.,"**Translation:** Retrieve the names of shops that have more products than the average number of products across all shops.
+
+**Explanation:**
+1. **SELECT name FROM shop**: This part of the query specifies that we want to get the names of the shops from the ""shop"" table.
+  
+2. **WHERE number_products >**: This condition filters the results to only include shops where the number of products is greater than a certain value.
+
+3. **(SELECT avg(number_products) FROM shop)**: This subquery calculates the average number of products across all shops. The main query will compare each shop's number of products to this average.
+
+In summary, the query finds and lists the names of shops that have a higher number of products than the average number of products in all shops.","**Translation:** Retrieve the names of shops that have more products than the average number of products across all shops.
+
+**",":**
+1. **SELECT name FROM shop**: This part of the query specifies that we want to get the names of the shops from the ""shop"" table.
+  
+2. **WHERE number_products >**: This condition filters the results to only include shops where the number of products is greater than a certain value.
+
+3. **(SELECT avg(number_products) FROM shop)**: This subquery calculates the average number of products across all shops. The main query will compare each shop's number of products to this average.
+
+In summary, the query finds and lists the names of shops that have a higher number of products than the average number of products in all shops."
+employee_hire_evaluation,SELECT district FROM shop WHERE Number_products  <  3000 INTERSECT SELECT district FROM shop WHERE Number_products  >  10000,Which district has both stores with less than 3000 products and stores with more than 10000 products?,"**Translation:**  
+Show the districts where the number of products is less than 3000 and also where the number of products is more than 10000.
+
+**Explanation of the SQL Query:**
+
+1. **SELECT district FROM shop WHERE Number_products < 3000**: This part of the query retrieves all districts from the ""shop"" table where the number of products is less than 3000.
+
+2. **INTERSECT**: This keyword is used to find the common results between two queries. It means we are looking for districts that meet the criteria of both queries.
+
+3. **SELECT district FROM shop WHERE Number_products > 10000**: This part retrieves all districts from the ""shop"" table where the number of products is greater than 10000.
+
+4. **Final Result**: The query will return the districts that have both conditions satisfied: having fewer than 3000 products and more than 10000 products. However, logically, a district cannot have both fewer than 3000 and more than 10000 products at the same time, so the result will likely be empty.","**Translation:**  
+Show the districts where the number of products is less than 3000 and also where the number of products is more than 10000.
+
+**","of the SQL Query:**
+
+1. **SELECT district FROM shop WHERE Number_products < 3000**: This part of the query retrieves all districts from the ""shop"" table where the number of products is less than 3000.
+
+2. **INTERSECT**: This keyword is used to find the common results between two queries. It means we are looking for districts that meet the criteria of both queries.
+
+3. **SELECT district FROM shop WHERE Number_products > 10000**: This part retrieves all districts from the ""shop"" table where the number of products is greater than 10000.
+
+4. **Final Result**: The query will return the districts that have both conditions satisfied: having fewer than 3000 products and more than 10000 products. However, logically, a district cannot have both fewer than 3000 and more than 10000 products at the same time, so the result will likely be empty."
+cre_Doc_Template_Mgt,"SELECT document_name ,  template_id FROM Documents WHERE Document_Description LIKE ""%w%""",What is the document name and template id for document with description with the letter 'w' in it?,"**Translation:**  
+Retrieve the names and template IDs of documents that include the letter ""w"" in their description.
+
+**Explanation of the SQL Query:**
+
+1. **SELECT document_name, template_id**: This part specifies that we want to retrieve two columns from the database: `document_name` and `template_id`.
+
+2. **FROM Documents**: This indicates that we are querying data from the `Documents` table.
+
+3. **WHERE Document_Description LIKE ""%w%""**: This condition filters the results to only include documents where the `Document_Description` contains the letter ""w"" anywhere in the text. The `%` symbols are wildcards that allow for any characters to appear before or after ""w"".
+
+In summary, the query is designed to find and list all documents that have the letter ""w"" in their descriptions, along with their names and template IDs.","**Translation:**  
+Retrieve the names and template IDs of documents that include the letter ""w"" in their description.
+
+**","of the SQL Query:**
+
+1. **SELECT document_name, template_id**: This part specifies that we want to retrieve two columns from the database: `document_name` and `template_id`.
+
+2. **FROM Documents**: This indicates that we are querying data from the `Documents` table.
+
+3. **WHERE Document_Description LIKE ""%w%""**: This condition filters the results to only include documents where the `Document_Description` contains the letter ""w"" anywhere in the text. The `%` symbols are wildcards that allow for any characters to appear before or after ""w"".
+
+In summary, the query is designed to find and list all documents that have the letter ""w"" in their descriptions, along with their names and template IDs."
+course_teach,SELECT Name FROM teacher WHERE Teacher_id NOT IN (SELECT Teacher_id FROM course_arrange),List the names of teachers who have not been arranged to teach courses.,"**Translation:**  
+Retrieve the names of teachers who have not been assigned to teach any courses.
+
+**Explanation of the SQL Query:**
+
+1. **SELECT Name FROM teacher**: This part of the query specifies that we want to get the names of teachers from the ""teacher"" table.
+
+2. **WHERE Teacher_id NOT IN**: This condition filters the results to include only those teachers whose IDs are not found in a specific list.
+
+3. **(SELECT Teacher_id FROM course_arrange)**: This subquery selects all Teacher IDs from the ""course_arrange"" table, which presumably contains records of teachers assigned to courses.
+
+Putting it all together, the query effectively finds teachers who do not have any entries in the ""course_arrange"" table, meaning they haven't been assigned to teach any courses.","**Translation:**  
+Retrieve the names of teachers who have not been assigned to teach any courses.
+
+**","of the SQL Query:**
+
+1. **SELECT Name FROM teacher**: This part of the query specifies that we want to get the names of teachers from the ""teacher"" table.
+
+2. **WHERE Teacher_id NOT IN**: This condition filters the results to include only those teachers whose IDs are not found in a specific list.
+
+3. **(SELECT Teacher_id FROM course_arrange)**: This subquery selects all Teacher IDs from the ""course_arrange"" table, which presumably contains records of teachers assigned to courses.
+
+Putting it all together, the query effectively finds teachers who do not have any entries in the ""course_arrange"" table, meaning they haven't been assigned to teach any courses."
+museum_visit,SELECT name FROM museum WHERE num_of_staff  >  (SELECT min(num_of_staff) FROM museum WHERE open_year  >  2010),find the names of museums which have more staff than the minimum staff number of all museums opened after 2010.,"**Translation:**  
+Retrieve the names of museums that have more staff than the museum with the fewest staff that opened after the year 2010.
+
+**Explanation of the SQL Query:**
+
+1. **Main Query:**  
+   `SELECT name FROM museum`  
+   This part of the query is asking for the names of museums from the `museum` table.
+
+2. **Condition:**  
+   `WHERE num_of_staff > ...`  
+   Here, we are specifying a condition that the number of staff in the museums we want to retrieve must be greater than a certain value.
+
+3. **Subquery:**  
+   `(SELECT min(num_of_staff) FROM museum WHERE open_year > 2010)`  
+   This subquery is looking for the minimum number of staff among all museums that opened after the year 2010. It finds the museum with the least staff in that specific group.
+
+4. **Comparison:**  
+   The main query will only return the names of museums where the number of staff is greater than the minimum number of staff found in the subquery.
+
+In summary, the query identifies museums with a staff count exceeding that of the least-staffed museum that opened after 2010.","**Translation:**  
+Retrieve the names of museums that have more staff than the museum with the fewest staff that opened after the year 2010.
+
+**","of the SQL Query:**
+
+1. **Main Query:**  
+   `SELECT name FROM museum`  
+   This part of the query is asking for the names of museums from the `museum` table.
+
+2. **Condition:**  
+   `WHERE num_of_staff > ...`  
+   Here, we are specifying a condition that the number of staff in the museums we want to retrieve must be greater than a certain value.
+
+3. **Subquery:**  
+   `(SELECT min(num_of_staff) FROM museum WHERE open_year > 2010)`  
+   This subquery is looking for the minimum number of staff among all museums that opened after the year 2010. It finds the museum with the least staff in that specific group.
+
+4. **Comparison:**  
+   The main query will only return the names of museums where the number of staff is greater than the minimum number of staff found in the subquery.
+
+In summary, the query identifies museums with a staff count exceeding that of the least-staffed museum that opened after 2010."
+museum_visit,"SELECT t2.visitor_id ,  t1.name ,  t1.Level_of_membership FROM visitor AS t1 JOIN visit AS t2 ON t1.id  =  t2.visitor_id GROUP BY t2.visitor_id ORDER BY sum(t2.Total_spent) DESC LIMIT 1","What are the id, name and membership level of visitors who have spent the largest amount of money in total in all museum tickets?","**Translation:**
+Select the visitor's ID, their name, and their membership level from the visitor table, joining it with the visit table based on the visitor's ID. Group the results by visitor ID, order them by the total amount spent in descending order, and limit the output to the top result.
+
+**Explanation:**
+1. **SELECT t2.visitor_id, t1.name, t1.Level_of_membership**: This part specifies that we want to retrieve the visitor's ID (from the visit table), their name, and their membership level (from the visitor table).
+
+2. **FROM visitor AS t1 JOIN visit AS t2 ON t1.id = t2.visitor_id**: Here, we are joining two tables: the visitor table (aliased as t1) and the visit table (aliased as t2). The join condition is that the visitor's ID in the visitor table must match the visitor ID in the visit table.
+
+3. **GROUP BY t2.visitor_id**: This groups the results by each visitor's ID, which allows us to aggregate data for each visitor.
+
+4. **ORDER BY sum(t2.Total_spent) DESC**: This orders the grouped results by the total amount spent by each visitor in descending order, meaning the visitor who spent the most will be at the top.
+
+5. **LIMIT 1**: Finally, this limits the output to just one record, which will be the visitor who has spent the most.
+
+In summary, this query finds the visitor who has spent the most money, along with their ID, name, and membership level.","**Translation:**
+Select the visitor's ID, their name, and their membership level from the visitor table, joining it with the visit table based on the visitor's ID. Group the results by visitor ID, order them by the total amount spent in descending order, and limit the output to the top result.
+
+**",":**
+1. **SELECT t2.visitor_id, t1.name, t1.Level_of_membership**: This part specifies that we want to retrieve the visitor's ID (from the visit table), their name, and their membership level (from the visitor table).
+
+2. **FROM visitor AS t1 JOIN visit AS t2 ON t1.id = t2.visitor_id**: Here, we are joining two tables: the visitor table (aliased as t1) and the visit table (aliased as t2). The join condition is that the visitor's ID in the visitor table must match the visitor ID in the visit table.
+
+3. **GROUP BY t2.visitor_id**: This groups the results by each visitor's ID, which allows us to aggregate data for each visitor.
+
+4. **ORDER BY sum(t2.Total_spent) DESC**: This orders the grouped results by the total amount spent by each visitor in descending order, meaning the visitor who spent the most will be at the top.
+
+5. **LIMIT 1**: Finally, this limits the output to just one record, which will be the visitor who has spent the most.
+
+In summary, this query finds the visitor who has spent the most money, along with their ID, name, and membership level."
+wta_1,"SELECT sum(ranking_points) ,  T1.first_name FROM players AS T1 JOIN rankings AS T2 ON T1.player_id  =  T2.player_id GROUP BY T1.first_name",Find the total ranking points for each player and their first name.,"**Translation:**  
+Calculate the total ranking points for each player and display their first names.
+
+**Explanation of the SQL Query:**
+
+1. **SELECT sum(ranking_points), T1.first_name**: This part of the query specifies that we want to retrieve two pieces of information: the total (sum) of the ranking points and the first name of each player.
+
+2. **FROM players AS T1**: Here, we are selecting data from the ""players"" table, which we are referring to as T1 for easier reference later in the query.
+
+3. **JOIN rankings AS T2 ON T1.player_id = T2.player_id**: This line indicates that we are joining the ""rankings"" table (referred to as T2) with the ""players"" table (T1). The join is based on the condition that the player_id in the players table matches the player_id in the rankings table. This allows us to combine information from both tables.
+
+4. **GROUP BY T1.first_name**: Finally, this part groups the results by the first name of the players. This means that for each unique first name, the query will calculate the total ranking points.
+
+In summary, the query calculates the total ranking points for each player and groups the results by their first names, allowing us to see how many points each player has accumulated.","**Translation:**  
+Calculate the total ranking points for each player and display their first names.
+
+**","of the SQL Query:**
+
+1. **SELECT sum(ranking_points), T1.first_name**: This part of the query specifies that we want to retrieve two pieces of information: the total (sum) of the ranking points and the first name of each player.
+
+2. **FROM players AS T1**: Here, we are selecting data from the ""players"" table, which we are referring to as T1 for easier reference later in the query.
+
+3. **JOIN rankings AS T2 ON T1.player_id = T2.player_id**: This line indicates that we are joining the ""rankings"" table (referred to as T2) with the ""players"" table (T1). The join is based on the condition that the player_id in the players table matches the player_id in the rankings table. This allows us to combine information from both tables.
+
+4. **GROUP BY T1.first_name**: Finally, this part groups the results by the first name of the players. This means that for each unique first name, the query will calculate the total ranking points.
+
+In summary, the query calculates the total ranking points for each player and groups the results by their first names, allowing us to see how many points each player has accumulated."
+student_transcripts_tracking,"SELECT T1.degree_program_id ,  T1.degree_summary_name FROM Degree_Programs AS T1 JOIN Student_Enrolment AS T2 ON T1.degree_program_id  =  T2.degree_program_id GROUP BY T1.degree_program_id ORDER BY count(*) DESC LIMIT 1",Find the program which most number of students are enrolled in. List both the id and the summary.,"**Translation:**
+Retrieve the ID and summary name of the degree program that has the highest number of student enrollments.
+
+**Explanation:**
+1. **SELECT T1.degree_program_id, T1.degree_summary_name**: This part specifies that we want to select two columns: the ID of the degree program and its summary name from the results.
+
+2. **FROM Degree_Programs AS T1**: We are pulling data from the ""Degree_Programs"" table, which we are referring to as T1 for easier reference.
+
+3. **JOIN Student_Enrolment AS T2 ON T1.degree_program_id = T2.degree_program_id**: This line joins the ""Degree_Programs"" table (T1) with the ""Student_Enrolment"" table (T2) based on the matching degree program IDs. This means we are combining information from both tables where the degree program IDs are the same.
+
+4. **GROUP BY T1.degree_program_id**: This groups the results by the degree program ID, allowing us to aggregate data for each program.
+
+5. **ORDER BY count(*) DESC**: This orders the grouped results by the count of enrollments in descending order, meaning the degree program with the most enrollments will appear first.
+
+6. **LIMIT 1**: Finally, this limits the results to just one entry, which will be the degree program with the highest number of student enrollments.
+
+In summary, this SQL query identifies the degree program that has the most students enrolled by counting enrollments and sorting them, returning the top result.","**Translation:**
+Retrieve the ID and summary name of the degree program that has the highest number of student enrollments.
+
+**",":**
+1. **SELECT T1.degree_program_id, T1.degree_summary_name**: This part specifies that we want to select two columns: the ID of the degree program and its summary name from the results.
+
+2. **FROM Degree_Programs AS T1**: We are pulling data from the ""Degree_Programs"" table, which we are referring to as T1 for easier reference.
+
+3. **JOIN Student_Enrolment AS T2 ON T1.degree_program_id = T2.degree_program_id**: This line joins the ""Degree_Programs"" table (T1) with the ""Student_Enrolment"" table (T2) based on the matching degree program IDs. This means we are combining information from both tables where the degree program IDs are the same.
+
+4. **GROUP BY T1.degree_program_id**: This groups the results by the degree program ID, allowing us to aggregate data for each program.
+
+5. **ORDER BY count(*) DESC**: This orders the grouped results by the count of enrollments in descending order, meaning the degree program with the most enrollments will appear first.
+
+6. **LIMIT 1**: Finally, this limits the results to just one entry, which will be the degree program with the highest number of student enrollments.
+
+In summary, this SQL query identifies the degree program that has the most students enrolled by counting enrollments and sorting them, returning the top result."
+student_transcripts_tracking,SELECT DISTINCT T2.semester_id FROM Degree_Programs AS T1 JOIN Student_Enrolment AS T2 ON T1.degree_program_id  =  T2.degree_program_id WHERE degree_summary_name  =  'Master' INTERSECT SELECT DISTINCT T2.semester_id FROM Degree_Programs AS T1 JOIN Student_Enrolment AS T2 ON T1.degree_program_id  =  T2.degree_program_id WHERE degree_summary_name  =  'Bachelor',Find the semester when both Master students and Bachelor students got enrolled in.,"**Translation:**
+Retrieve the unique semester IDs for students enrolled in both Master's and Bachelor's degree programs.
+
+**Explanation:**
+1. **SELECT DISTINCT T2.semester_id**: This part of the query is selecting unique semester IDs from the results.
+  
+2. **FROM Degree_Programs AS T1 JOIN Student_Enrolment AS T2 ON T1.degree_program_id = T2.degree_program_id**: Here, we are joining two tables: `Degree_Programs` (aliased as T1) and `Student_Enrolment` (aliased as T2) based on the matching `degree_program_id`. This allows us to link degree programs to the students enrolled in them.
+
+3. **WHERE degree_summary_name = 'Master'**: This condition filters the results to include only those records where the degree program is a Master's program.
+
+4. **INTERSECT**: This keyword is used to find common results between two queries.
+
+5. **SELECT DISTINCT T2.semester_id FROM Degree_Programs AS T1 JOIN Student_Enrolment AS T2 ON T1.degree_program_id = T2.degree_program_id WHERE degree_summary_name = 'Bachelor'**: This second part of the query is similar to the first, but it filters for Bachelor's degree programs instead.
+
+In summary, the query finds semester IDs that are common to students enrolled in both Master's and Bachelor's degree programs.","**Translation:**
+Retrieve the unique semester IDs for students enrolled in both Master's and Bachelor's degree programs.
+
+**",":**
+1. **SELECT DISTINCT T2.semester_id**: This part of the query is selecting unique semester IDs from the results.
+  
+2. **FROM Degree_Programs AS T1 JOIN Student_Enrolment AS T2 ON T1.degree_program_id = T2.degree_program_id**: Here, we are joining two tables: `Degree_Programs` (aliased as T1) and `Student_Enrolment` (aliased as T2) based on the matching `degree_program_id`. This allows us to link degree programs to the students enrolled in them.
+
+3. **WHERE degree_summary_name = 'Master'**: This condition filters the results to include only those records where the degree program is a Master's program.
+
+4. **INTERSECT**: This keyword is used to find common results between two queries.
+
+5. **SELECT DISTINCT T2.semester_id FROM Degree_Programs AS T1 JOIN Student_Enrolment AS T2 ON T1.degree_program_id = T2.degree_program_id WHERE degree_summary_name = 'Bachelor'**: This second part of the query is similar to the first, but it filters for Bachelor's degree programs instead.
+
+In summary, the query finds semester IDs that are common to students enrolled in both Master's and Bachelor's degree programs."
+voter_1,SELECT T3.area_code FROM contestants AS T1 JOIN votes AS T2 ON T1.contestant_number  =  T2.contestant_number JOIN area_code_state AS T3 ON T2.state  =  T3.state WHERE T1.contestant_name  =  'Tabatha Gehling' INTERSECT SELECT T3.area_code FROM contestants AS T1 JOIN votes AS T2 ON T1.contestant_number  =  T2.contestant_number JOIN area_code_state AS T3 ON T2.state  =  T3.state WHERE T1.contestant_name  =  'Kelly Clauss',List the area codes in which voters voted both for the contestant 'Tabatha Gehling' and the contestant 'Kelly Clauss'.,"**Translation:**
+Find the area codes associated with the contestants named 'Tabatha Gehling' and 'Kelly Clauss', but only those area codes that are common to both contestants.
+
+**Explanation of the SQL Query:**
+1. **SELECT T3.area_code**: This part of the query specifies that we want to retrieve the area codes from the results.
+  
+2. **FROM contestants AS T1**: We start by selecting from the `contestants` table, which we refer to as `T1`.
+
+3. **JOIN votes AS T2 ON T1.contestant_number = T2.contestant_number**: We join the `votes` table (aliased as `T2`) to the `contestants` table based on the `contestant_number`, which is a common identifier in both tables.
+
+4. **JOIN area_code_state AS T3 ON T2.state = T3.state**: Next, we join the `area_code_state` table (aliased as `T3`) to the `votes` table based on the `state` field, allowing us to access area codes related to the states.
+
+5. **WHERE T1.contestant_name = 'Tabatha Gehling'**: This condition filters the results to include only those records where the contestant's name is 'Tabatha Gehling'.
+
+6. **INTERSECT**: This keyword is used to find common results between two queries.
+
+7. **SELECT T3.area_code FROM contestants AS T1 JOIN votes AS T2 ON T1.contestant_number = T2.contestant_number JOIN area_code_state AS T3 ON T2.state = T3.state WHERE T1.contestant_name = 'Kelly Clauss'**: This second part of the query is similar to the first, but it filters for the contestant named 'Kelly Clauss'.
+
+In summary, the query retrieves area codes that are associated with both 'Tabatha Gehling' and 'Kelly Clauss', ensuring that only the area codes present for both contestants are returned.","**Translation:**
+Find the area codes associated with the contestants named 'Tabatha Gehling' and 'Kelly Clauss', but only those area codes that are common to both contestants.
+
+**","of the SQL Query:**
+1. **SELECT T3.area_code**: This part of the query specifies that we want to retrieve the area codes from the results.
+  
+2. **FROM contestants AS T1**: We start by selecting from the `contestants` table, which we refer to as `T1`.
+
+3. **JOIN votes AS T2 ON T1.contestant_number = T2.contestant_number**: We join the `votes` table (aliased as `T2`) to the `contestants` table based on the `contestant_number`, which is a common identifier in both tables.
+
+4. **JOIN area_code_state AS T3 ON T2.state = T3.state**: Next, we join the `area_code_state` table (aliased as `T3`) to the `votes` table based on the `state` field, allowing us to access area codes related to the states.
+
+5. **WHERE T1.contestant_name = 'Tabatha Gehling'**: This condition filters the results to include only those records where the contestant's name is 'Tabatha Gehling'.
+
+6. **INTERSECT**: This keyword is used to find common results between two queries.
+
+7. **SELECT T3.area_code FROM contestants AS T1 JOIN votes AS T2 ON T1.contestant_number = T2.contestant_number JOIN area_code_state AS T3 ON T2.state = T3.state WHERE T1.contestant_name = 'Kelly Clauss'**: This second part of the query is similar to the first, but it filters for the contestant named 'Kelly Clauss'.
+
+In summary, the query retrieves area codes that are associated with both 'Tabatha Gehling' and 'Kelly Clauss', ensuring that only the area codes present for both contestants are returned."
+world_1,"SELECT * FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  ""English"" AND IsOfficial  =  ""T"" UNION SELECT * FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  ""Dutch"" AND IsOfficial  =  ""T""",Which countries have either English or Dutch as an official language?,"**Translation:**
+Retrieve all information about countries where English or Dutch is an official language.
+
+**Explanation of the SQL Query:**
+
+1. **SELECT * FROM country AS T1**: This part selects all columns from the `country` table and gives it an alias `T1`.
+
+2. **JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode**: This joins the `country` table (T1) with the `countrylanguage` table (T2) based on the country code. This means we are linking each country with its corresponding languages.
+
+3. **WHERE T2.Language = ""English"" AND IsOfficial = ""T""**: This filters the results to include only those records where the language is English and it is marked as an official language (IsOfficial = ""T"").
+
+4. **UNION**: This combines the results of the first query with the results of the second query, ensuring that any duplicate records are removed.
+
+5. **SELECT * FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = ""Dutch"" AND IsOfficial = ""T""**: This part is similar to the first query but filters for Dutch as the language instead of English, again ensuring it is an official language.
+
+In summary, the query retrieves all countries where either English or Dutch is recognized as an official language.","**Translation:**
+Retrieve all information about countries where English or Dutch is an official language.
+
+**","of the SQL Query:**
+
+1. **SELECT * FROM country AS T1**: This part selects all columns from the `country` table and gives it an alias `T1`.
+
+2. **JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode**: This joins the `country` table (T1) with the `countrylanguage` table (T2) based on the country code. This means we are linking each country with its corresponding languages.
+
+3. **WHERE T2.Language = ""English"" AND IsOfficial = ""T""**: This filters the results to include only those records where the language is English and it is marked as an official language (IsOfficial = ""T"").
+
+4. **UNION**: This combines the results of the first query with the results of the second query, ensuring that any duplicate records are removed.
+
+5. **SELECT * FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = ""Dutch"" AND IsOfficial = ""T""**: This part is similar to the first query but filters for Dutch as the language instead of English, again ensuring it is an official language.
+
+In summary, the query retrieves all countries where either English or Dutch is recognized as an official language."
+world_1,"SELECT avg(LifeExpectancy) FROM country WHERE Name NOT IN (SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode WHERE T2.Language  =  ""English"" AND T2.IsOfficial  =  ""T"")",What is average life expectancy in the countries where English is not the official language?,"**Translation:**
+Calculate the average life expectancy of countries that do not have English as an official language.
+
+**Explanation of the SQL Query:**
+
+1. **SELECT avg(LifeExpectancy)**: This part of the query is asking for the average value of the ""LifeExpectancy"" column from the ""country"" table.
+
+2. **FROM country**: This specifies that the data is being retrieved from the ""country"" table.
+
+3. **WHERE Name NOT IN**: This condition filters the results to exclude certain countries. Specifically, it will only include countries whose names are not in a specified list.
+
+4. **(SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = ""English"" AND T2.IsOfficial = ""T"")**: 
+   - This subquery is creating a list of country names (T1.Name) that meet certain criteria.
+   - **FROM country AS T1 JOIN countrylanguage AS T2**: This part joins the ""country"" table (aliased as T1) with the ""countrylanguage"" table (aliased as T2) based on the country code.
+   - **WHERE T2.Language = ""English"" AND T2.IsOfficial = ""T""**: This condition filters the joined data to only include countries where English is an official language.
+
+In summary, the entire query calculates the average life expectancy of countries that do not have English as an official language by excluding those countries from the average calculation.","**Translation:**
+Calculate the average life expectancy of countries that do not have English as an official language.
+
+**","of the SQL Query:**
+
+1. **SELECT avg(LifeExpectancy)**: This part of the query is asking for the average value of the ""LifeExpectancy"" column from the ""country"" table.
+
+2. **FROM country**: This specifies that the data is being retrieved from the ""country"" table.
+
+3. **WHERE Name NOT IN**: This condition filters the results to exclude certain countries. Specifically, it will only include countries whose names are not in a specified list.
+
+4. **(SELECT T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode WHERE T2.Language = ""English"" AND T2.IsOfficial = ""T"")**: 
+   - This subquery is creating a list of country names (T1.Name) that meet certain criteria.
+   - **FROM country AS T1 JOIN countrylanguage AS T2**: This part joins the ""country"" table (aliased as T1) with the ""countrylanguage"" table (aliased as T2) based on the country code.
+   - **WHERE T2.Language = ""English"" AND T2.IsOfficial = ""T""**: This condition filters the joined data to only include countries where English is an official language.
+
+In summary, the entire query calculates the average life expectancy of countries that do not have English as an official language by excluding those countries from the average calculation."
+world_1,"SELECT Name FROM country WHERE SurfaceArea  >  (SELECT min(SurfaceArea) FROM country WHERE Continent  =  ""Europe"")",What are the countries that have greater surface area than any country in Europe?,"**Translation:**
+Select the names of countries that have a surface area greater than the smallest surface area of countries located in Europe.
+
+**Explanation:**
+1. **Outer Query:** `SELECT Name FROM country WHERE SurfaceArea > ...`
+   - This part of the query is asking for the names of countries from the `country` table where the surface area is greater than a certain value.
+
+2. **Inner Query:** `(SELECT min(SurfaceArea) FROM country WHERE Continent = ""Europe"")`
+   - This inner query finds the smallest surface area among all countries that are in the continent of Europe. It uses the `MIN` function to get the minimum value of the `SurfaceArea` column for countries where the `Continent` is ""Europe"".
+
+3. **Comparison:** The outer query then compares each country's surface area to the result of the inner query (the smallest surface area in Europe). Only countries with a surface area larger than this minimum value will be included in the final result.
+
+In summary, the query retrieves the names of countries that are larger in surface area than the smallest country in Europe.","**Translation:**
+Select the names of countries that have a surface area greater than the smallest surface area of countries located in Europe.
+
+**",":**
+1. **Outer Query:** `SELECT Name FROM country WHERE SurfaceArea > ...`
+   - This part of the query is asking for the names of countries from the `country` table where the surface area is greater than a certain value.
+
+2. **Inner Query:** `(SELECT min(SurfaceArea) FROM country WHERE Continent = ""Europe"")`
+   - This inner query finds the smallest surface area among all countries that are in the continent of Europe. It uses the `MIN` function to get the minimum value of the `SurfaceArea` column for countries where the `Continent` is ""Europe"".
+
+3. **Comparison:** The outer query then compares each country's surface area to the result of the inner query (the smallest surface area in Europe). Only countries with a surface area larger than this minimum value will be included in the final result.
+
+In summary, the query retrieves the names of countries that are larger in surface area than the smallest country in Europe."
+world_1,"SELECT CountryCode FROM countrylanguage EXCEPT SELECT CountryCode FROM countrylanguage WHERE LANGUAGE  =  ""English""",What are the country codes for countries that do not speak English?,"**Translation:**  
+Find the country codes of countries that do not have ""English"" as an official language.
+
+**Explanation of the SQL Query:**
+
+1. **SELECT CountryCode FROM countrylanguage:**  
+   This part of the query retrieves all country codes from the `countrylanguage` table. It lists every country code regardless of the language spoken.
+
+2. **EXCEPT:**  
+   The `EXCEPT` operator is used to exclude results from the first query based on the results of the second query. It effectively means ""give me the results from the first query that are not in the second query.""
+
+3. **SELECT CountryCode FROM countrylanguage WHERE LANGUAGE = ""English"":**  
+   This part of the query selects country codes from the `countrylanguage` table where the language is ""English."" It identifies all countries that have ""English"" as one of their official languages.
+
+4. **Combining the Queries:**  
+   By using `EXCEPT`, the query returns only those country codes from the first selection that do not appear in the second selection. In other words, it lists the country codes of countries that do not have ""English"" as an official language.
+
+Overall, the query effectively identifies countries that do not recognize ""English"" as an official language.","**Translation:**  
+Find the country codes of countries that do not have ""English"" as an official language.
+
+**","of the SQL Query:**
+
+1. **SELECT CountryCode FROM countrylanguage:**  
+   This part of the query retrieves all country codes from the `countrylanguage` table. It lists every country code regardless of the language spoken.
+
+2. **EXCEPT:**  
+   The `EXCEPT` operator is used to exclude results from the first query based on the results of the second query. It effectively means ""give me the results from the first query that are not in the second query.""
+
+3. **SELECT CountryCode FROM countrylanguage WHERE LANGUAGE = ""English"":**  
+   This part of the query selects country codes from the `countrylanguage` table where the language is ""English."" It identifies all countries that have ""English"" as one of their official languages.
+
+4. **Combining the Queries:**  
+   By using `EXCEPT`, the query returns only those country codes from the first selection that do not appear in the second selection. In other words, it lists the country codes of countries that do not have ""English"" as an official language.
+
+Overall, the query effectively identifies countries that do not recognize ""English"" as an official language."
+world_1,SELECT DISTINCT T2.Name FROM country AS T1 JOIN city AS T2 ON T2.CountryCode  =  T1.Code WHERE T1.Continent  =  'Europe' AND T1.Name NOT IN (SELECT T3.Name FROM country AS T3 JOIN countrylanguage AS T4 ON T3.Code  =  T4.CountryCode WHERE T4.IsOfficial  =  'T' AND T4.Language  =  'English'),Which cities are in European countries where English is not the official language?,"**Translation:**
+Retrieve a unique list of city names from countries in Europe that do not have English as an official language.
+
+**Explanation:**
+1. **SELECT DISTINCT T2.Name**: This part of the query is asking for unique city names (T2.Name) to avoid duplicates in the results.
+
+2. **FROM country AS T1 JOIN city AS T2 ON T2.CountryCode = T1.Code**: Here, the query is joining two tables: `country` (aliased as T1) and `city` (aliased as T2). The join condition is that the `CountryCode` in the `city` table must match the `Code` in the `country` table. This links each city to its corresponding country.
+
+3. **WHERE T1.Continent = 'Europe'**: This condition filters the results to include only those countries that are located in Europe.
+
+4. **AND T1.Name NOT IN (SELECT T3.Name FROM country AS T3 JOIN countrylanguage AS T4 ON T3.Code = T4.CountryCode WHERE T4.IsOfficial = 'T' AND T4.Language = 'English')**: This subquery is used to exclude countries that have English as an official language. It selects country names (T3.Name) from the `country` table (T3) that are linked to the `countrylanguage` table (T4) where the language is marked as official ('T') and the language is English. The main query then ensures that the cities from countries in Europe are only included if their country name is not in this list.
+
+Overall, the query effectively finds cities in European countries that do not recognize English as an official language.","**Translation:**
+Retrieve a unique list of city names from countries in Europe that do not have English as an official language.
+
+**",":**
+1. **SELECT DISTINCT T2.Name**: This part of the query is asking for unique city names (T2.Name) to avoid duplicates in the results.
+
+2. **FROM country AS T1 JOIN city AS T2 ON T2.CountryCode = T1.Code**: Here, the query is joining two tables: `country` (aliased as T1) and `city` (aliased as T2). The join condition is that the `CountryCode` in the `city` table must match the `Code` in the `country` table. This links each city to its corresponding country.
+
+3. **WHERE T1.Continent = 'Europe'**: This condition filters the results to include only those countries that are located in Europe.
+
+4. **AND T1.Name NOT IN (SELECT T3.Name FROM country AS T3 JOIN countrylanguage AS T4 ON T3.Code = T4.CountryCode WHERE T4.IsOfficial = 'T' AND T4.Language = 'English')**: This subquery is used to exclude countries that have English as an official language. It selects country names (T3.Name) from the `country` table (T3) that are linked to the `countrylanguage` table (T4) where the language is marked as official ('T') and the language is English. The main query then ensures that the cities from countries in Europe are only included if their country name is not in this list.
+
+Overall, the query effectively finds cities in European countries that do not recognize English as an official language."
+world_1,"SELECT COUNT(T2.Language) ,  T1.Name FROM country AS T1 JOIN countrylanguage AS T2 ON T1.Code  =  T2.CountryCode GROUP BY T1.Name HAVING COUNT(*)  >  2",Return the country name and the numbers of languages spoken for each country that speaks at least 3 languages.,"**Translation:**
+Count the number of languages spoken in each country and list the names of those countries that have more than two languages.
+
+**Explanation of the SQL Query:**
+
+1. **SELECT COUNT(T2.Language), T1.Name**: This part of the query specifies that we want to retrieve two pieces of information: the count of languages (from the `countrylanguage` table) and the name of the country (from the `country` table).
+
+2. **FROM country AS T1**: We are selecting data from the `country` table, which we are referring to as `T1`.
+
+3. **JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode**: This line joins the `country` table (T1) with the `countrylanguage` table (T2) based on the condition that the country code in the `country` table matches the country code in the `countrylanguage` table. This allows us to combine information from both tables.
+
+4. **GROUP BY T1.Name**: After joining the tables, we group the results by the name of the country. This means that all records for each country will be aggregated together.
+
+5. **HAVING COUNT(*) > 2**: Finally, this condition filters the grouped results to only include countries that have more than two languages. The `HAVING` clause is used here because we are filtering based on an aggregate function (the count of languages).
+
+In summary, this query counts the number of languages for each country and returns the names of those countries that have more than two languages spoken.","**Translation:**
+Count the number of languages spoken in each country and list the names of those countries that have more than two languages.
+
+**","of the SQL Query:**
+
+1. **SELECT COUNT(T2.Language), T1.Name**: This part of the query specifies that we want to retrieve two pieces of information: the count of languages (from the `countrylanguage` table) and the name of the country (from the `country` table).
+
+2. **FROM country AS T1**: We are selecting data from the `country` table, which we are referring to as `T1`.
+
+3. **JOIN countrylanguage AS T2 ON T1.Code = T2.CountryCode**: This line joins the `country` table (T1) with the `countrylanguage` table (T2) based on the condition that the country code in the `country` table matches the country code in the `countrylanguage` table. This allows us to combine information from both tables.
+
+4. **GROUP BY T1.Name**: After joining the tables, we group the results by the name of the country. This means that all records for each country will be aggregated together.
+
+5. **HAVING COUNT(*) > 2**: Finally, this condition filters the grouped results to only include countries that have more than two languages. The `HAVING` clause is used here because we are filtering based on an aggregate function (the count of languages).
+
+In summary, this query counts the number of languages for each country and returns the names of those countries that have more than two languages spoken."
+orchestra,SELECT T1.Name FROM conductor AS T1 JOIN orchestra AS T2 ON T1.Conductor_ID  =  T2.Conductor_ID GROUP BY T2.Conductor_ID ORDER BY COUNT(*) DESC LIMIT 1,Show the name of the conductor that has conducted the most number of orchestras.,"**Translation:**
+Select the name of the conductor who has conducted the most orchestras.
+
+**Explanation:**
+1. **SELECT T1.Name**: This part specifies that we want to retrieve the name of the conductor from the results.
+  
+2. **FROM conductor AS T1**: We are selecting data from the ""conductor"" table, and we are referring to it as T1 for easier reference later in the query.
+
+3. **JOIN orchestra AS T2 ON T1.Conductor_ID = T2.Conductor_ID**: This line joins the ""conductor"" table (T1) with the ""orchestra"" table (T2) based on the matching ""Conductor_ID"" in both tables. This means we are linking each conductor to the orchestras they have conducted.
+
+4. **GROUP BY T2.Conductor_ID**: After joining the tables, we group the results by the ""Conductor_ID"" from the orchestra table (T2). This allows us to aggregate data for each conductor.
+
+5. **ORDER BY COUNT(*) DESC**: This orders the grouped results by the count of orchestras each conductor has conducted, in descending order. The conductor with the most orchestras will appear first.
+
+6. **LIMIT 1**: Finally, this limits the results to just one entry, which will be the conductor who has conducted the most orchestras.
+
+In summary, the query finds and returns the name of the conductor who has conducted the highest number of orchestras.","**Translation:**
+Select the name of the conductor who has conducted the most orchestras.
+
+**",":**
+1. **SELECT T1.Name**: This part specifies that we want to retrieve the name of the conductor from the results.
+  
+2. **FROM conductor AS T1**: We are selecting data from the ""conductor"" table, and we are referring to it as T1 for easier reference later in the query.
+
+3. **JOIN orchestra AS T2 ON T1.Conductor_ID = T2.Conductor_ID**: This line joins the ""conductor"" table (T1) with the ""orchestra"" table (T2) based on the matching ""Conductor_ID"" in both tables. This means we are linking each conductor to the orchestras they have conducted.
+
+4. **GROUP BY T2.Conductor_ID**: After joining the tables, we group the results by the ""Conductor_ID"" from the orchestra table (T2). This allows us to aggregate data for each conductor.
+
+5. **ORDER BY COUNT(*) DESC**: This orders the grouped results by the count of orchestras each conductor has conducted, in descending order. The conductor with the most orchestras will appear first.
+
+6. **LIMIT 1**: Finally, this limits the results to just one entry, which will be the conductor who has conducted the most orchestras.
+
+In summary, the query finds and returns the name of the conductor who has conducted the highest number of orchestras."
+dog_kennels,"SELECT professional_id ,  last_name ,  cell_number FROM Professionals WHERE state  =  'Indiana' UNION SELECT T1.professional_id ,  T1.last_name ,  T1.cell_number FROM Professionals AS T1 JOIN Treatments AS T2 ON T1.professional_id  =  T2.professional_id GROUP BY T1.professional_id HAVING count(*)  >  2","Which professionals live in the state of Indiana or have done treatment on more than 2 treatments? List his or her id, last name and cell phone.","**Translation:**
+Select the professional ID, last name, and cell number of professionals who are located in Indiana. Additionally, select the same details for professionals who have been involved in more than two treatments.
+
+**Explanation of the SQL Query:**
+
+1. **SELECT professional_id, last_name, cell_number FROM Professionals WHERE state = 'Indiana':**
+   - This part of the query retrieves the professional ID, last name, and cell number of all professionals whose state is Indiana.
+
+2. **UNION:**
+   - The UNION operator combines the results of two SELECT statements. It ensures that the final result set contains unique records from both queries.
+
+3. **SELECT T1.professional_id, T1.last_name, T1.cell_number FROM Professionals AS T1 JOIN Treatments AS T2 ON T1.professional_id = T2.professional_id:**
+   - This part selects the professional ID, last name, and cell number from the Professionals table (aliased as T1) and joins it with the Treatments table (aliased as T2) based on the matching professional IDs.
+
+4. **GROUP BY T1.professional_id HAVING count(*) > 2:**
+   - This groups the results by professional ID and filters the groups to include only those professionals who have been associated with more than two treatments.
+
+In summary, the query retrieves a list of professionals from Indiana and those who have handled more than two treatments, ensuring that the results from both parts are unique.","**Translation:**
+Select the professional ID, last name, and cell number of professionals who are located in Indiana. Additionally, select the same details for professionals who have been involved in more than two treatments.
+
+**","of the SQL Query:**
+
+1. **SELECT professional_id, last_name, cell_number FROM Professionals WHERE state = 'Indiana':**
+   - This part of the query retrieves the professional ID, last name, and cell number of all professionals whose state is Indiana.
+
+2. **UNION:**
+   - The UNION operator combines the results of two SELECT statements. It ensures that the final result set contains unique records from both queries.
+
+3. **SELECT T1.professional_id, T1.last_name, T1.cell_number FROM Professionals AS T1 JOIN Treatments AS T2 ON T1.professional_id = T2.professional_id:**
+   - This part selects the professional ID, last name, and cell number from the Professionals table (aliased as T1) and joins it with the Treatments table (aliased as T2) based on the matching professional IDs.
+
+4. **GROUP BY T1.professional_id HAVING count(*) > 2:**
+   - This groups the results by professional ID and filters the groups to include only those professionals who have been associated with more than two treatments.
+
+In summary, the query retrieves a list of professionals from Indiana and those who have handled more than two treatments, ensuring that the results from both parts are unique."
+dog_kennels,SELECT T1.treatment_type_description FROM Treatment_types AS T1 JOIN Treatments AS T2 ON T1.treatment_type_code  =  T2.treatment_type_code GROUP BY T1.treatment_type_code ORDER BY sum(cost_of_treatment) ASC LIMIT 1,What is the description of the treatment type that costs the least money in total?,"**Translation:**
+Retrieve the description of the treatment type that has the lowest total cost from the database.
+
+**Explanation of the SQL Query:**
+1. **SELECT T1.treatment_type_description**: This part specifies that we want to get the description of the treatment type from the `Treatment_types` table, which is aliased as T1.
+
+2. **FROM Treatment_types AS T1**: This indicates that we are selecting data from the `Treatment_types` table and giving it the alias T1 for easier reference.
+
+3. **JOIN Treatments AS T2 ON T1.treatment_type_code = T2.treatment_type_code**: Here, we are joining the `Treatment_types` table (T1) with the `Treatments` table (T2) based on a common column, `treatment_type_code`. This means we are linking the two tables where the treatment type codes match.
+
+4. **GROUP BY T1.treatment_type_code**: This clause groups the results by the treatment type code, allowing us to aggregate data for each treatment type.
+
+5. **ORDER BY sum(cost_of_treatment) ASC**: This orders the grouped results by the total cost of treatments in ascending order. The `sum(cost_of_treatment)` calculates the total cost for each treatment type.
+
+6. **LIMIT 1**: Finally, this limits the results to only the first entry, which will be the treatment type with the lowest total cost due to the ascending order.
+
+In summary, this query finds the treatment type with the least total cost by aggregating costs from the `Treatments` table and returning its description.","**Translation:**
+Retrieve the description of the treatment type that has the lowest total cost from the database.
+
+**","of the SQL Query:**
+1. **SELECT T1.treatment_type_description**: This part specifies that we want to get the description of the treatment type from the `Treatment_types` table, which is aliased as T1.
+
+2. **FROM Treatment_types AS T1**: This indicates that we are selecting data from the `Treatment_types` table and giving it the alias T1 for easier reference.
+
+3. **JOIN Treatments AS T2 ON T1.treatment_type_code = T2.treatment_type_code**: Here, we are joining the `Treatment_types` table (T1) with the `Treatments` table (T2) based on a common column, `treatment_type_code`. This means we are linking the two tables where the treatment type codes match.
+
+4. **GROUP BY T1.treatment_type_code**: This clause groups the results by the treatment type code, allowing us to aggregate data for each treatment type.
+
+5. **ORDER BY sum(cost_of_treatment) ASC**: This orders the grouped results by the total cost of treatments in ascending order. The `sum(cost_of_treatment)` calculates the total cost for each treatment type.
+
+6. **LIMIT 1**: Finally, this limits the results to only the first entry, which will be the treatment type with the lowest total cost due to the ascending order.
+
+In summary, this query finds the treatment type with the least total cost by aggregating costs from the `Treatments` table and returning its description."
+dog_kennels,"SELECT T1.owner_id ,  T1.zip_code FROM Owners AS T1 JOIN Dogs AS T2 ON T1.owner_id  =  T2.owner_id JOIN Treatments AS T3 ON T2.dog_id  =  T3.dog_id GROUP BY T1.owner_id ORDER BY sum(T3.cost_of_treatment) DESC LIMIT 1",Which owner has paid the largest amount of money in total for their dogs? Show the owner id and zip code.,"**Translation:**
+Retrieve the owner ID and zip code of the dog owner who has spent the most on treatments.
+
+**Explanation:**
+1. **SELECT T1.owner_id, T1.zip_code**: This part specifies that we want to select the owner ID and zip code from the Owners table (aliased as T1).
+
+2. **FROM Owners AS T1**: We are starting our query from the Owners table, which we refer to as T1.
+
+3. **JOIN Dogs AS T2 ON T1.owner_id = T2.owner_id**: We are joining the Dogs table (aliased as T2) with the Owners table. The join condition is that the owner ID in the Owners table must match the owner ID in the Dogs table. This links each owner to their respective dogs.
+
+4. **JOIN Treatments AS T3 ON T2.dog_id = T3.dog_id**: Next, we join the Treatments table (aliased as T3) with the Dogs table. The join condition is that the dog ID in the Dogs table must match the dog ID in the Treatments table. This connects each dog to its treatment records.
+
+5. **GROUP BY T1.owner_id**: We group the results by the owner ID. This means that we will aggregate the data for each owner.
+
+6. **ORDER BY sum(T3.cost_of_treatment) DESC**: We order the grouped results by the total cost of treatments (sum of treatment costs) in descending order. This means the owner who has spent the most on treatments will appear first.
+
+7. **LIMIT 1**: Finally, we limit the results to just one record, which will be the owner who has spent the most on treatments.
+
+In summary, this query finds the owner who has spent the most on dog treatments and retrieves their ID and zip code.","**Translation:**
+Retrieve the owner ID and zip code of the dog owner who has spent the most on treatments.
+
+**",":**
+1. **SELECT T1.owner_id, T1.zip_code**: This part specifies that we want to select the owner ID and zip code from the Owners table (aliased as T1).
+
+2. **FROM Owners AS T1**: We are starting our query from the Owners table, which we refer to as T1.
+
+3. **JOIN Dogs AS T2 ON T1.owner_id = T2.owner_id**: We are joining the Dogs table (aliased as T2) with the Owners table. The join condition is that the owner ID in the Owners table must match the owner ID in the Dogs table. This links each owner to their respective dogs.
+
+4. **JOIN Treatments AS T3 ON T2.dog_id = T3.dog_id**: Next, we join the Treatments table (aliased as T3) with the Dogs table. The join condition is that the dog ID in the Dogs table must match the dog ID in the Treatments table. This connects each dog to its treatment records.
+
+5. **GROUP BY T1.owner_id**: We group the results by the owner ID. This means that we will aggregate the data for each owner.
+
+6. **ORDER BY sum(T3.cost_of_treatment) DESC**: We order the grouped results by the total cost of treatments (sum of treatment costs) in descending order. This means the owner who has spent the most on treatments will appear first.
+
+7. **LIMIT 1**: Finally, we limit the results to just one record, which will be the owner who has spent the most on treatments.
+
+In summary, this query finds the owner who has spent the most on dog treatments and retrieves their ID and zip code."
+dog_kennels,"SELECT T1.name ,  T2.date_of_treatment FROM Dogs AS T1 JOIN Treatments AS T2 ON T1.dog_id  =  T2.dog_id WHERE T1.breed_code  =  ( SELECT breed_code FROM Dogs GROUP BY breed_code ORDER BY count(*) ASC LIMIT 1 )",List the names of the dogs of the rarest breed and the treatment dates of them.,"**Translation:**
+Select the name and treatment date of dogs that belong to the breed which has the least number of dogs recorded.
+
+**Explanation of the SQL Query:**
+
+1. **SELECT T1.name, T2.date_of_treatment**: This part specifies that we want to retrieve the dog's name and the date of their treatment.
+
+2. **FROM Dogs AS T1 JOIN Treatments AS T2 ON T1.dog_id = T2.dog_id**: Here, we are joining two tables: `Dogs` (aliased as T1) and `Treatments` (aliased as T2). The join is based on the `dog_id`, meaning we are linking each dog to its corresponding treatment records.
+
+3. **WHERE T1.breed_code = (SELECT breed_code FROM Dogs GROUP BY breed_code ORDER BY count(*) ASC LIMIT 1)**: This condition filters the results to only include dogs of the breed that has the least number of entries in the `Dogs` table. 
+   - The subquery `(SELECT breed_code FROM Dogs GROUP BY breed_code ORDER BY count(*) ASC LIMIT 1)` finds the breed code that appears the least frequently in the `Dogs` table. It groups the records by `breed_code`, counts them, orders them in ascending order, and limits the result to just one breed code.
+
+In summary, the query retrieves the names and treatment dates of dogs that belong to the least common breed in the database.","**Translation:**
+Select the name and treatment date of dogs that belong to the breed which has the least number of dogs recorded.
+
+**","of the SQL Query:**
+
+1. **SELECT T1.name, T2.date_of_treatment**: This part specifies that we want to retrieve the dog's name and the date of their treatment.
+
+2. **FROM Dogs AS T1 JOIN Treatments AS T2 ON T1.dog_id = T2.dog_id**: Here, we are joining two tables: `Dogs` (aliased as T1) and `Treatments` (aliased as T2). The join is based on the `dog_id`, meaning we are linking each dog to its corresponding treatment records.
+
+3. **WHERE T1.breed_code = (SELECT breed_code FROM Dogs GROUP BY breed_code ORDER BY count(*) ASC LIMIT 1)**: This condition filters the results to only include dogs of the breed that has the least number of entries in the `Dogs` table. 
+   - The subquery `(SELECT breed_code FROM Dogs GROUP BY breed_code ORDER BY count(*) ASC LIMIT 1)` finds the breed code that appears the least frequently in the `Dogs` table. It groups the records by `breed_code`, counts them, orders them in ascending order, and limits the result to just one breed code.
+
+In summary, the query retrieves the names and treatment dates of dogs that belong to the least common breed in the database."
+singer,"SELECT T1.Name ,  sum(T2.Sales) FROM singer AS T1 JOIN song AS T2 ON T1.Singer_ID  =  T2.Singer_ID GROUP BY T1.Name",Show the names of singers and the total sales of their songs.,"**Translation:**
+Retrieve the names of all singers and the total sales of their songs.
+
+**Explanation:**
+1. **SELECT T1.Name, sum(T2.Sales)**: This part specifies that we want to get the names of singers (from the `singer` table, referred to as T1) and the total sales of their songs (from the `song` table, referred to as T2).
+
+2. **FROM singer AS T1**: We are selecting data from the `singer` table and giving it an alias (T1) for easier reference.
+
+3. **JOIN song AS T2 ON T1.Singer_ID = T2.Singer_ID**: This line joins the `singer` table (T1) with the `song` table (T2) based on the `Singer_ID`. This means we are linking each singer to their respective songs.
+
+4. **GROUP BY T1.Name**: Finally, we group the results by the singer's name. This is necessary because we are using the `sum()` function to calculate total sales, and we want to ensure that the sales are summed for each individual singer.
+
+Overall, the query calculates the total sales for each singer by combining data from both the `singer` and `song` tables.","**Translation:**
+Retrieve the names of all singers and the total sales of their songs.
+
+**",":**
+1. **SELECT T1.Name, sum(T2.Sales)**: This part specifies that we want to get the names of singers (from the `singer` table, referred to as T1) and the total sales of their songs (from the `song` table, referred to as T2).
+
+2. **FROM singer AS T1**: We are selecting data from the `singer` table and giving it an alias (T1) for easier reference.
+
+3. **JOIN song AS T2 ON T1.Singer_ID = T2.Singer_ID**: This line joins the `singer` table (T1) with the `song` table (T2) based on the `Singer_ID`. This means we are linking each singer to their respective songs.
+
+4. **GROUP BY T1.Name**: Finally, we group the results by the singer's name. This is necessary because we are using the `sum()` function to calculate total sales, and we want to ensure that the sales are summed for each individual singer.
+
+Overall, the query calculates the total sales for each singer by combining data from both the `singer` and `song` tables."
+real_estate_properties,"SELECT property_name FROM Properties WHERE property_type_code  =  ""House"" UNION SELECT property_name FROM Properties WHERE property_type_code  =  ""Apartment"" AND room_count  >  1",What are the names of properties that are either houses or apartments with more than 1 room?,"**Translation:**
+Retrieve the names of properties that are either classified as ""House"" or are ""Apartments"" with more than one room.
+
+**Explanation:**
+1. **SELECT property_name FROM Properties WHERE property_type_code = ""House"":** 
+   - This part of the query selects the names of all properties from the ""Properties"" table where the property type is ""House"".
+
+2. **UNION:** 
+   - The UNION operator combines the results of two or more SELECT statements. It ensures that the final result set contains unique property names from both queries.
+
+3. **SELECT property_name FROM Properties WHERE property_type_code = ""Apartment"" AND room_count > 1:** 
+   - This part selects the names of properties from the ""Properties"" table where the property type is ""Apartment"" and the number of rooms is greater than one.
+
+In summary, the query retrieves a list of property names that are either houses or apartments with more than one room, ensuring no duplicates in the final result.","**Translation:**
+Retrieve the names of properties that are either classified as ""House"" or are ""Apartments"" with more than one room.
+
+**",":**
+1. **SELECT property_name FROM Properties WHERE property_type_code = ""House"":** 
+   - This part of the query selects the names of all properties from the ""Properties"" table where the property type is ""House"".
+
+2. **UNION:** 
+   - The UNION operator combines the results of two or more SELECT statements. It ensures that the final result set contains unique property names from both queries.
+
+3. **SELECT property_name FROM Properties WHERE property_type_code = ""Apartment"" AND room_count > 1:** 
+   - This part selects the names of properties from the ""Properties"" table where the property type is ""Apartment"" and the number of rooms is greater than one.
+
+In summary, the query retrieves a list of property names that are either houses or apartments with more than one room, ensuring no duplicates in the final result."
